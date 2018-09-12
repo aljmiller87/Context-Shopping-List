@@ -90,9 +90,7 @@ body {
 	    width: 100vw;
 	    &.visible {
 	    	@include transform(translate(0, 0));
-	    	-webkit-animation: MovingGradient 20s ease infinite;
-			-moz-animation: MovingGradient 20s ease infinite;
-			animation: MovingGradient 20s ease infinite;
+			@include animation(MovingGradient 20s ease infinite);
 			background: linear-gradient(140deg, #00708f 0%,#75cbc6 45%,#009698 71%,#11365a 100%);
 			background-size: 400% 400%;	    	
 	    	max-height: none;
@@ -116,24 +114,33 @@ body {
 	            }
 	        }
 	    }
+	    .loading-element {
+	    	@include animation-duration(.3s)
+	    }
 	    ul {
 	    	margin: 50px auto;
 	    	padding: 0;
 	    	width: 700px;
 	    	.fakeCard {
-			    background: rgba(255, 255, 255, 0.7);
+	    		@include transition(background .3 linear);
+			    background: rgba($white, 0.7);
 			    color: #00708F;
+			    cursor: pointer;
 			    display: inline-block;
 			    font-family: $font-serif;
-			    font-size: 16px;
-			    height: 80px;
-			    line-height: 60px;
-			    margin: 0 20px 10px 0;
-			    padding: 10px;
+			    font-size: 12px;
+			    height: 40px;
+			    line-height: 24px;
+			    margin: 0 10px 10px 0;
+			    padding: 8px;
 			    position: relative;
 			    text-align: center;
-			    width: 80px;
+			    width: 40px;
+			    &:hover {
+			    	background: $white;
+			    }
 			    span {
+			    	display: none;
 			    	position: absolute;
 			    	&:nth-child(1) {
 			    		top: 10px;
@@ -263,8 +270,7 @@ body {
 						} 
 					}
 					&:nth-of-type(12n+1) {
-						-webkit-animation-delay: .1 + .25s;
-  						animation-delay: .1 + .25s;
+  						@include animation-delay(.1 + .25s);
 						.card {
 							.front {
 								.text {

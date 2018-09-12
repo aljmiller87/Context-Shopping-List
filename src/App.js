@@ -184,19 +184,7 @@ class App extends Component {
                 </div>
                 <section className="cards">
                   {cards}
-{/*                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('1')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="1" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('1')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="1" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('2')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="2" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('2')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="2" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('3')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="3" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('3')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="3" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('4')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="4" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('4')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="4" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('5')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="5" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('5')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="5" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('6')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="6" />
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('6')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="6" />
-*/}                </section>
+                </section>
               </div>
             </div>
           </main>
