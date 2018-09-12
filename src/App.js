@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './components/Card.js';
+import FakeGame from './components/FakeGame.js';
 import IntroPage from './components/IntroPage.js';
 
 import './scss/styles.scss';
@@ -8,11 +9,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      //show intro
+      //show intro, fake game, or real game
       showIntro: true,
+      showFakeGame: false,
+      hasShownFakeGameOnce: false,
+      showGame: false,
+
 
       // Information regarding status of cards
-      numberofCards: 10,
+      numberofCards: 16,
       cardsArray: undefined,
       cardClick: true,
       cardsFlipped: 0,
@@ -29,6 +34,7 @@ class App extends Component {
     // this.listTypes = ['a', 'a', 'b', 'b', 'c', 'c', 'd', 'd']
     this.enterGame = this.enterGame.bind(this);
     this.exitGame = this.exitGame.bind(this);
+    this.enterFakeGame = this.enterFakeGame.bind(this);
     this.cardsFlipped = this.cardsFlipped.bind(this);
     this.newGame = this.newGame.bind(this);
     this.shuffle = this.shuffle.bind(this);
@@ -40,20 +46,38 @@ class App extends Component {
     this.generateCards();
   }
 
+  enterFakeGame() {
+    console.log('enterFakeGame called');
+    if(this.state.hasShownFakeGameOnce === false) {
+      this.setState({
+        showIntro: false,
+        showFakeGame: true,
+        hasShownFakeGameOnce: true
+      })
+    } else {
+      this.setState({
+        showFakeGame: false,
+      })
+      this.enterGame();
+    }
+      
+  }
+
   enterGame() {
     this.setState({
-      showIntro: false
+      showGame: true
     })
   }
 
   exitGame() {
     this.setState({
+      showGame: false,
       showIntro: true
     })
   }
 
   cardsFlipped(type) {
-    console.log('type', type);
+    console.log('type in App cardsFlipped', type);
     // Check if this is the first or second card flipped
     // If card flipped is first card flipped
     if (this.state.cardsFlipped === 0) {
@@ -85,7 +109,7 @@ class App extends Component {
 
       // after time delay, will reset card status defaults
       setTimeout(() => {
-        console.log('cardClick set to true');
+        // console.log('cardClick set to true');
           this.setState({
             cardClick: true,
             cardsFlipped: 0,
@@ -114,29 +138,36 @@ class App extends Component {
   generateCards() {
     let cards = [];
     for(let i=1; i<= this.state.numberofCards; i++) {
-      let index = Math.ceil(i/2);
-      let card = <Card key={i} type={index} canFlip={this.state.cardClick} callback={() => this.cardsFlipped(index)} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard}/>
-      cards.push(card)
+      let type = Math.ceil(i/2);
+      cards.push(type)
     }
-    this.setState({cardsArray: cards})
-    return;
+    this.shuffle(cards);
   }
 
   shuffle(a) {
-    let cards = this.state.cardsArray; 
-    for (let i = cards.length - 1; i > 0; i--) {
+    for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
+      [a[i], a[j]] = [a[j], a[i]];
     }
-    this.setState({shuffledCards: cards});
-    return;
+    this.setState(function(prevState, props){
+      return {shuffledCards: a}
+    });
   }
-  render() {    
 
+
+  render() {  
+    let cards = []; 
+    if(this.state.shuffledCards) {
+      cards = this.state.shuffledCards.map((type,index) => {
+        return <Card key={index} animated={this.state.showIntro} callback={() => this.cardsFlipped(type)} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type={type} />;
+      })
+    }
+      
     return (
       <div className="App">
-        <IntroPage showIntro={this.state.showIntro} buttonClick={this.enterGame} />
-        <div className={this.state.showIntro === true ? 'site-wrap intro-visible' : 'site-wrap'}>
+        <IntroPage showIntro={this.state.showIntro} buttonClick={this.enterFakeGame} />
+        <FakeGame showFakeGame={this.state.showFakeGame} buttonClick={this.enterGame} />
+        <div className={this.state.showGame === true ? 'game-wrap visible' : 'game-wrap'}>
           <header>
             <button onClick={this.newGame}>New Game</button>
             <button onClick={this.exitGame}>X</button>
@@ -152,7 +183,8 @@ class App extends Component {
                   <p>The hover states correlate to the hidden image. Or do they....?</p>
                 </div>
                 <section className="cards">
-                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('1')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="1" />
+                  {cards}
+{/*                  <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('1')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="1" />
                   <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('1')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="1" />
                   <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('2')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="2" />
                   <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('2')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="2" />
@@ -164,7 +196,7 @@ class App extends Component {
                   <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('5')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="5" />
                   <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('6')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="6" />
                   <Card animated={this.state.showIntro} callback={() => this.cardsFlipped('6')} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type="6" />
-                </section>
+*/}                </section>
               </div>
             </div>
           </main>

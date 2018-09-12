@@ -21,7 +21,7 @@ class IntroPage extends Component {
 	render() {
 
 		return (
-			<div className={this.props.showIntro === true ? 'intro-wrap intro-visible' : 'intro-wrap'}>
+			<div className={this.props.showIntro === true ? 'intro-wrap visible' : 'intro-wrap'}>
 				<div className="bg">
 				  <div className="video embed-responsive embed-responsive-16by9">
 				    <iframe src="https://www.youtube.com/embed/9ZfN87gSjvI?modestbranding=1&amp;start=18&amp;autoplay=1&amp;loop=1&amp;playlist=9ZfN87gSjvI&amp;disablekb=1&amp;controls=0&amp;mute=1&amp;showinfo=0" frameBorder="0"></iframe>
