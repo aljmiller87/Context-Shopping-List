@@ -42,22 +42,22 @@ class FakeGame extends Component {
 	    }
 
 	    // Set classes dependent on state
-	    let headerClass = '';
 	    let loadingClassName = this.state.loading ? "loading-element animated" : "loading-element animated fadeOut";
-	    let fakeGameClass = this.state.loading ? "fakeGame animated" : "fakeGame animated fadeIn";
-
+	    // let fakeGameClass = this.state.loading ? "fakeGame animated" : "fakeGame animated fadeIn";
+	    let fakeGameClass = this.state.loading ? "fakeGame" : "fakeGame visible"
 
 		return (
 			<div id='fake-game-wrap' className={this.props.showFakeGame === true ? 'fake-game-wrap visible' : 'fake-game-wrap'}>
-				<header className={headerClass}>
+				<ReactLoading type="spokes" color="#ffffff" height={50} width={50} className={loadingClassName}/>
+				<header className="">
 					<div className="container">
 						<div className="row">
 							<div className="col-xs-12">
 								<ul>
-									<li>Logo</li>
+									<li>Memory Game</li>
 									<li>Player 1: 0</li>
 									<li>Player 2: 0</li>
-									<li>Memory Game</li>
+									<li></li>
 								</ul>
 							</div>
 						</div>
@@ -66,11 +66,10 @@ class FakeGame extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12 col-sm-4 pull-right">
-							<div className="pop-up">Just kidding</div>
+							<div className="pop-up animated delay-3 bounceIn">Just kidding</div>
 						</div>
 						<div className="col-xs-12 col-sm-8">
-							<button onClick={this.exitFakeGame} className="button slate outline">Enter Game</button>
-							<ReactLoading type="spokes" color="#ffffff" height={50} width={50} className={loadingClassName}/>
+							<button onClick={this.exitFakeGame} className="button slate outline">Enter Game</button>							
 							<div className={fakeGameClass}>
 								<ul>
 									{fakeCards}

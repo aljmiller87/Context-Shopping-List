@@ -34,7 +34,7 @@ class IntroPage extends Component {
 				    	<TypeWriterWrapper renderTypeWriter={this.state.showTypeWriter} />
 				    	<span className="placeholder">.</span>
 				    </p>
-				    <button className="btn banner" onClick={this.props.buttonClick}>Enter</button>
+				    <button className="btn white" onClick={this.props.buttonClick}>Enter</button>
 				  </div>
 				</div>
 			</div>

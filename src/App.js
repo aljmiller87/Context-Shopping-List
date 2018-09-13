@@ -67,6 +67,7 @@ class App extends Component {
     console.log('called enter game');
     this.setState({
       showIntro: false,
+      showFakeGame: false,
       showGame: true
     })
   }
@@ -180,13 +181,23 @@ class App extends Component {
         <IntroPage showIntro={this.state.showIntro} buttonClick={this.enterFakeGame} />
         <FakeGame showFakeGame={this.state.showFakeGame} buttonClick={this.enterGame} />
         <div className={this.state.showGame === true ? 'game-wrap visible' : 'game-wrap'}>
-          <header>
-            <button onClick={this.newGame}>New Game</button>
-            <button onClick={this.exitGame}>X</button>
-  {/*          <button onClick={() => {cards = this.shuffle(cards) } }>Shuffle</button> */}
-            <p>Player 1 score: {this.state.playerOneScore}</p>
-            <p>Player 2 score: {this.state.playerTwoScore}</p>
-          </header>
+          <header className="">
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-12">
+                  <ul>
+                    <li>Memory Game</li>
+                    <li>Player 1: {this.state.playerOneScore}</li>
+                    <li>Player 2: {this.state.playerTwoScore}</li>
+                    <li>
+                      <button className="btn white" onClick={this.newGame}>New Game</button>
+                      <button className="btn white" onClick={this.exitGame}>X</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>  
+          </header>          
           <main>
             <div className="container">
               <div className="row">
