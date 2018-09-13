@@ -14,6 +14,18 @@
 // }
 
 body {
+	header {
+		@include animation-delay(.5s)
+		background: rgba(0,0,0,.3);
+		position: relative;
+		z-index: 10;
+		ul {
+			@include clear-list-defaults;
+			li {
+				color: $white;				
+			}
+		}
+	}
 	.intro-wrap {
 		@include transform(translate(0, 0));
 	    @include transition(transform 0.3s $standard-curve);
@@ -95,25 +107,19 @@ body {
 			background-size: 400% 400%;	    	
 	    	max-height: none;
 	    	position: fixed;
-
-			// @keyframes MovingGradient { 
-			//     0%{background-position:17% 0%}
-			//     50%{background-position:84% 100%}
-			//     100%{background-position:17% 0%}
-			// }
 			@at-root {
 	            @include keyframes(MovingGradient) {
-	                // 0%{background-position:17% 0%}
-
-				    // 50%{background-position:84% 100%}
 				    0%{background-position:17% 0%}
 				    25%{background-position:100% 0%}
 				    50%{background-position:100% 100%}
 				    75%{background-position:0% 100%}
 				    100%{background-position:17% 0%}
 	            }
-	        }
+	        }        
 	    }
+	    &.animated {
+        	@include transform(translate(0, 0));
+        }
 	    .loading-element {
 	    	@include animation-duration(.3s)
 	    }
@@ -182,7 +188,7 @@ body {
 	.game-wrap {
 		@include transform(translate(100%, 0));
 	    @include transition(transform 0.3s $standard-curve);
-	    margin-top: -100px;
+	    margin-top: -100vh;
 	    max-height: 100vh;
 		overflow: hidden;
 	    position: relative;	    
@@ -193,11 +199,20 @@ body {
 	    }
 	    &.visible {
 	    	@include transform(translate(0, 0));
+	    	@include animation(MovingGradient 20s ease infinite);			
+	       	background: linear-gradient(140deg, #00708f 0%,#75cbc6 45%,#009698 71%,#11365a 100%);
+			background-size: 400% 400%;	    	
 	    	max-height: none;
+	    	@at-root {
+	            @include keyframes(MovingGradient) {
+				    0%{background-position:17% 0%}
+				    25%{background-position:100% 0%}
+				    50%{background-position:100% 100%}
+				    75%{background-position:0% 100%}
+				    100%{background-position:17% 0%}
+	            }
+	        }
 	    }
-		header{
-
-		}
 		section {
 			&.intro {
 

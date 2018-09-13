@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   enterFakeGame() {
-    console.log('enterFakeGame called');
+    
     if(this.state.hasShownFakeGameOnce === false) {
       this.setState({
         showIntro: false,
@@ -64,7 +64,9 @@ class App extends Component {
   }
 
   enterGame() {
+    console.log('called enter game');
     this.setState({
+      showIntro: false,
       showGame: true
     })
   }
@@ -72,6 +74,7 @@ class App extends Component {
   exitGame() {
     this.setState({
       showGame: false,
+      showFakeGame: false,
       showIntro: true
     })
   }
@@ -162,9 +165,18 @@ class App extends Component {
         return <Card key={index} animated={this.state.showIntro} callback={() => this.cardsFlipped(type)} canFlip={this.state.cardClick} matchedCards={this.state.matchedCards} resetCard={this.state.resetCard} type={type} />;
       })
     }
+
+    let appClass = "App";
+    if (this.state.showIntro) {
+      appClass = "App show-intro";
+    } else if (this.state.showFakeGame) {
+      appClass = "App show-fake-game";
+    } else if (this.state.showGame) {
+      appClass = "App show-game";
+    }
       
     return (
-      <div className="App">
+      <div className={appClass}>
         <IntroPage showIntro={this.state.showIntro} buttonClick={this.enterFakeGame} />
         <FakeGame showFakeGame={this.state.showFakeGame} buttonClick={this.enterGame} />
         <div className={this.state.showGame === true ? 'game-wrap visible' : 'game-wrap'}>
