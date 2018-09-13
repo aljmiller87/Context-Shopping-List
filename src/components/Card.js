@@ -89,6 +89,7 @@ class Card extends Component {
         <div className="card" onClick={canFlip  ? this.handleClick : undefined}>
           <ReactCardFlip isFlipped={this.state.isFlipped}>
             <div className="front" key="front">
+              <span></span><span></span><span></span><span></span>
               <div className="text">
                 <h4>hello.</h4>
                 <p>is it me you're looking for?</p>

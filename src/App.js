@@ -186,7 +186,7 @@ class App extends Component {
               <div className="row">
                 <div className="col-xs-12">
                   <ul>
-                    <li>Memory Game</li>
+                    <li><h1>Memory Game</h1></li>
                     <li>Player 1: {this.state.playerOneScore}</li>
                     <li>Player 2: {this.state.playerTwoScore}</li>
                     <li>
@@ -202,8 +202,6 @@ class App extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-xs-12">
-                  <h1>Memory Game</h1>
-                  <p>The hover states correlate to the hidden image. Or do they....?</p>
                 </div>
                 <section className="cards">
                   {cards}

@@ -39,6 +39,9 @@ body {
 				&:last-child {
 					float:right;
 					margin: 0 0 0 30px;					
+				}
+				> * {
+					margin: 0;
 				}		
 			}
 		}
@@ -133,8 +136,21 @@ body {
 			    	max-height: none;
 			    	position: fixed;
 			    }
-			    .pop-up {
-			    	opacity: 0;
+			    .pop-up {			    	
+			    	@include animation-delay(3s);
+			    	@include transform(translate(50%,-50%));
+			    	background: rgba(255,255,255,1);
+				    left: 75%;
+				    margin: 0;
+				    opacity: 0;
+				    padding: 30px;
+				    position: absolute;
+				    top: calc(50% - 35px);	
+				    box-shadow: 2px 2px 6px $slate;
+				    border-top: 1px solid $gray;
+				    border-left: 1px solid $gray;	
+				    border-top: 1px solid rgba($gray, .5);
+				    border-left: 1px solid rgba($gray, .5);			    
 			    }
 	        }
 	        .show-game {
@@ -156,64 +172,27 @@ body {
 	    	&.visible {
 	    		opacity: 1;
 	    	}
-	    	ul {	    	
+	    	ul {	 
+	    		@include clear-list-defaults;   	
 		    	margin: 50px auto;		    	
 		    	padding: 0;
 		    	width: 700px;		    	
-		    	.fakeCard {
-		    		@include transition(background .3 linear);
-				    background: rgba($white, 0.7);
-				    color: #00708F;
-				    cursor: pointer;
-				    display: inline-block;
-				    font-family: $font-serif;
-				    font-size: 12px;
-				    height: 40px;
-				    line-height: 24px;
-				    margin: 0 10px 10px 0;
-				    padding: 8px;
-				    position: relative;
-				    text-align: center;
-				    width: 40px;
-				    &:hover {
-				    	background: $white;
-				    }
-				    span {
-				    	display: none;
-				    	position: absolute;
-				    	&:nth-child(1) {
-				    		top: 10px;
-				    		left: 10px;
-				    		height: 10px;
-				    		width: 10px;
-				    		border-top: 1px solid $blue;
-				    		border-left: 1px solid $blue;
-				    	}
-				    	&:nth-child(2) {
-				    		top: 10px;
-				    		right: 10px;
-				    		height: 10px;
-				    		width: 10px;
-				    		border-top: 1px solid $blue;
-				    		border-right: 1px solid $blue;
-				    	}
-				    	&:nth-child(3) {
-				    		bottom: 10px;
-				    		right: 10px;
-				    		height: 10px;
-				    		width: 10px;
-				    		border-bottom: 1px solid $blue;
-				    		border-right: 1px solid $blue;
-				    	}
-				    	&:nth-child(4) {
-				    		bottom: 10px;
-				    		left: 10px;
-				    		height: 10px;
-				    		width: 10px;
-				    		border-bottom: 1px solid $blue;
-				    		border-left: 1px solid $blue;
-				    	}
-				    }
+		    	.card {
+		    		display: inline-block;
+		    		.front {
+					    font-size: 12px;
+					    height: 40px;
+					    line-height: 24px;
+					    margin: 0 10px 10px 0;
+					    padding: 8px;
+					    width: 40px;
+					    &:hover {
+					    	background: $white;
+					    }
+					    span {
+					    	display: none;
+					    }
+					}
 			    }
 			}
 	    }
@@ -299,8 +278,8 @@ body {
 
 						}
 						.front {
-							background-image: url('/images/front-background.jpg');
-							background-size: cover;
+							// background-image: url('/images/front-background.jpg');
+							// background-size: cover;
 							&:hover {
 						    	cursor: pointer;
 						    }
@@ -505,7 +484,7 @@ body {
 									left: 0;
 									height: 100%;
 									width: 100%;
-									background-image: url(/images/front-background.jpg);
+									// background-image: url(/images/front-background.jpg);
 								    background-size: cover;
 								    background-position: center;
 								    z-index: 2;
@@ -529,7 +508,7 @@ body {
 								background-image: none;
 								&:before {
 								    @include transition(filter 1s linear);
-								    background-image: url(/images/front-background.jpg);
+								    // background-image: url(/images/front-background.jpg);
 								    background-size: cover;
 								    content: '';					    
 								    filter: blur(0);
@@ -657,5 +636,60 @@ body {
 				}
 			}
 		}	
-	}		
+	}
+	.card {
+		.front {
+			@include transition(background .3s linear);
+		    background: rgba($white, 0.7);
+		    color: #00708F;
+		    cursor: pointer;
+		    font-family: $font-serif;
+		    font-size: 12px;
+		    // height: 40px;
+		    line-height: 24px;
+		    margin: 0 10px 10px 0;
+		    padding: 8px;
+		    position: relative;
+		    text-align: center;
+		    // width: 40px;
+		    &:hover {
+		    	background: $white;
+		    }
+		    span {
+		    	position: absolute;
+		    	&:nth-child(1) {
+		    		top: 10px;
+		    		left: 10px;
+		    		height: 10px;
+		    		width: 10px;
+		    		border-top: 1px solid $blue;
+		    		border-left: 1px solid $blue;
+		    	}
+		    	&:nth-child(2) {
+		    		top: 10px;
+		    		right: 10px;
+		    		height: 10px;
+		    		width: 10px;
+		    		border-top: 1px solid $blue;
+		    		border-right: 1px solid $blue;
+		    	}
+		    	&:nth-child(3) {
+		    		bottom: 10px;
+		    		right: 10px;
+		    		height: 10px;
+		    		width: 10px;
+		    		border-bottom: 1px solid $blue;
+		    		border-right: 1px solid $blue;
+		    	}
+		    	&:nth-child(4) {
+		    		bottom: 10px;
+		    		left: 10px;
+		    		height: 10px;
+		    		width: 10px;
+		    		border-bottom: 1px solid $blue;
+		    		border-left: 1px solid $blue;
+		    	}
+		    }
+		}
+    }		
 }
