@@ -99,7 +99,7 @@ class Card extends Component {
 
      
             <div className="back" key="back">
-              <img src={`/images/image${this.props.type}.jpg`} />
+              <img src={`./images/image${this.props.type}.jpg`} />
             </div>
           </ReactCardFlip>
         </div>

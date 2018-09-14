@@ -207,7 +207,7 @@ class App extends Component {
     // Set classes dependent on state, mainly to control animations
     let headerClass = this.state.loading ? "" : "animate";
     let loadingClassName = this.state.loading ? "loading-element animated" : "loading-element animated fadeOut";
-    let newGameButtonClass = this.state.loading ? "btn white new-game-btn" : "btn white new-game-btn animate";
+    let newGameButtonClass = this.state.loading ? "btn slate upper large new-game-btn" : "btn slate upper large new-game-btn animate";
     let popUpClass = this.state.endGame ? "pop-up animate" : "pop-up";    
 
     // When app has ended game, this declares winner for UI
@@ -242,8 +242,11 @@ class App extends Component {
                     <li><h1>Memory Game</h1></li>
                     <li><span>Player 1: {this.state.playerOneScore}</span></li>
                     <li><span>Player 2: {this.state.playerTwoScore}</span></li>
-                    <li>                      
+                    <li> 
+                      {/* Iconmoon library not loading on build                     
                       <span className="icon-x" onClick={this.exitGame}></span>
+                      Using button as replacement */}
+                      <button className="btn white" onClick={this.exitGame}>Close</button>
                     </li>
                   </ul>
                 </div>
