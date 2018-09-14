@@ -10,6 +10,7 @@ class FakeGame extends Component {
 			popUp: false
 		}
 		this.exitFakeGame = this.exitFakeGame.bind(this);
+		this.initPopUp = this.initPopUp.bind(this);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -47,15 +48,14 @@ class FakeGame extends Component {
 		// Generating 141 fake cards
 		let fakeCards = [];
 	    for (var i = 1; i <+ 141; i++) {
-	        fakeCards.push(<li key={i} className="card"><div onClick={() => this.initPopUp} className="front">hello<span></span><span></span><span></span><span></span></div></li>);
+	        fakeCards.push(<li key={i} className="card"><div onClick={this.initPopUp} className="front">hello<span></span><span></span><span></span><span></span></div></li>);
 	    }
 
-	    // Set classes dependent on state
+	    // Set classes dependent on state, mainly to control animations
 	    let loadingClassName = this.state.loading ? "loading-element animated" : "loading-element animated fadeOut";
-	    // let fakeGameClass = this.state.loading ? "fakeGame animated" : "fakeGame animated fadeIn";
 	    let fakeGameClass = this.state.loading ? "fake-game" : "fake-game animate"
 	    let headerClass = this.state.loading ? "" : "animate";
-	    let popUpClass = this.state.popUp ? "pop-up" : "pop-up animated fadeInUp";
+	    let popUpClass = this.state.popUp ? "pop-up animate" : "pop-up";
 
 		return (
 			<div id='fake-game-wrap' className={this.props.showFakeGame === true ? 'fake-game-wrap visible' : 'fake-game-wrap'}>
@@ -65,7 +65,7 @@ class FakeGame extends Component {
 						<div className="row">
 							<div className="col-xs-12">
 								<ul>
-									<li>Memory Game</li>
+									<li><h1>Memory Game</h1></li>
 									<li>Player 1: 0</li>
 									<li>Player 2: 0</li>
 									<li></li>
@@ -74,23 +74,21 @@ class FakeGame extends Component {
 						</div>
 					</div>	
 				</header>
-				<div className="container">
-					<div className={popUpClass}>
-						<h3>Just kidding</h3>
-						<p>That would be a bit much, huh?</p>
-						<p>Click below to enter the real game</p>
-						<button className="btn blue" onClick={this.exitFakeGame}>Enter Game</button>
-					</div>
+				<div className="container">					
 					<div className="row">
-						<div className="col-xs-12 col-sm-4 pull-right">							
-						</div>
-						<div className="col-xs-12 col-sm-8">
+						<div className="col-xs-12">
 							<div className={fakeGameClass}>
 								<ul>
 									{fakeCards}
 								</ul>
 							</div>							
 						</div>						
+					</div>
+					<div className={popUpClass}>
+						<h3>Just kidding!</h3>
+						<p>That would be a bit much, huh?</p>
+						<p>Click below to enter the real game</p>
+						<button className="btn blue" onClick={this.exitFakeGame}>Enter Game</button>
 					</div>
 				</div>
 			</div>

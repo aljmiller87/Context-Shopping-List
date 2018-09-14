@@ -79,7 +79,8 @@ class Card extends Component {
     // 3) if card is already flipped, 
     let canFlip = (this.props.canFlip && !matched && !this.state.isFlipped);
     // Adds animated class when game is viewed by player
-    let cardWrapperClass = !this.props.animated ? 'col-xs-6 col-sm-4 col-md-3 card-wrapper animated fadeInDownSmall' : 'col-xs-6 col-sm-4 card-wrapper animated';
+    let cardWrapperClass = this.props.loading ? 'card-wrapper' : 'card-wrapper animate';
+    // let cardWrapperClass = !this.props.animated ? 'col-xs-6 col-sm-4 col-md-3 card-wrapper animated fadeInDownSmall' : 'col-xs-6 col-sm-4 card-wrapper animated';
     // Class changes if cards flips and is either a match or not a match
     let cardClass = 'card';
 
