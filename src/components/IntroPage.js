@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TypeWriter from 'react-typewriter';
+// import TypeWriter from 'react-typewriter';
 import TypeWriterWrapper from './TypeWriterWrapper.js';
 
 class IntroPage extends Component {
@@ -12,9 +12,9 @@ class IntroPage extends Component {
 	}
 
 	componentDidMount() {
-   	setTimeout(() => {
-      this.setState({ showTypeWriter: true }); 
-   	}, 2000);
+	   	setTimeout(() => {
+	      this.setState({ showTypeWriter: true }); 
+	   	}, 4000);
 	}
 
 

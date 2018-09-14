@@ -7,12 +7,13 @@ class TypeWriterWrapper extends Component {
 	}
 
 	render() {
+		console.log('before');
 		if (!this.props.renderTypeWriter) {
 			return null;
 		}
 		
 		return (
-			<TypeWriter typing={1} minDelay={30} >Or perhaps just a memory game!</TypeWriter>
+			<TypeWriter typing={1} minDelay={20} >Or perhaps just a memory game!</TypeWriter>
 		)
 	}
 }

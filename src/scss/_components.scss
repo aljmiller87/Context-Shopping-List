@@ -1,28 +1,36 @@
 body {
 	header {
 		@include transform(translate(0,-100%));
-		@include transition(transform .3s linear);
-		@include transition-delay(.3s);
+		// @include animation-delay(.5s);
+		// @include animation-timing-function($decelerated-curve);
+		// @include animation-duration($desktop-enter);		
 		background: rgba(0,0,0,.3);
 		padding: 20px 0;
 		position: relative;
 		z-index: 10;
-		@at-root {
-			.show-fake-game {
-				.fake-game-wrap {
-					header {
-						@include transform(translate(0,0));
-					}
-				}
-			}
-			.show-game {
-				.game-wrap {
-					header {
-						@include transform(translate(0,0));
-					}
-				}
-			}
+		&.animate {
+			@include animation(slideInDown $desktop-enter $decelerated-curve .5s 1 both);
 		}
+		// @at-root {
+		// 	.show-fake-game {
+		// 		.fake-game-wrap {
+		// 			header {
+		// @include transform(translate(0,-100%));
+		// @include animation-timing-function($decelerated-curve);
+		// @include animation-duration($desktop-enter);
+		// 			}
+		// 		}
+		// 	}
+		// 	.show-game {
+		// 		.game-wrap {
+		// 			header {
+		// 				@include transform(translate(0,-100%));
+		// 				@include animation-timing-function($decelerated-curve);
+		// 				@include animation-duration($desktop-enter);
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		ul {
 			@include clear-list-defaults;
@@ -91,8 +99,7 @@ body {
 		    top: 50%;
 		    z-index: 3;
 		    h1 {
-    			-webkit-animation-delay: 1s;
-		    	animation-delay: 1s;
+		    	@include animation-delay(3s);
 		    	color: $white;	
 		    	text-shadow: 1px 1px 1px #000;
 		    }
@@ -102,8 +109,8 @@ body {
 		    	text-shadow: 1px 1px 1px #000;
 		    }
 		    .blurb {
-		    	-webkit-animation-delay: 2s;
-		    	animation-delay: 2s;
+		    	@include animation-delay(4s);
+		    	@include animation-duration($desktop-enter);
 		    	span {
 		    		&.placeholder {
 		    			opacity: 0;
@@ -166,12 +173,21 @@ body {
 		    top: 50%;
 		    left: 50%;		    
 	    }
-	    .fakeGame  {
-			@include transition(opacity .3s linear);
-	    	opacity: 0;
-	    	&.visible {
-	    		opacity: 1;
-	    	}
+	    .fake-game  {
+			// @include transition(opacity $decelerated-curve linear);
+			// @include animation-delay(1s);
+			// @include animation-timing-function($decelerated-curve);
+			// @include animation-duration($desktop-enter);		
+			// -webkit-animation-fill-mode: both;
+   //  		animation-fill-mode: both;
+   			opacity: 0;
+   			&.animate {
+   				@include animation(fadeIn $desktop-enter $decelerated-curve 1s 1 both);
+   			}
+   
+
+	    	
+	    	
 	    	ul {	 
 	    		@include clear-list-defaults;   	
 		    	margin: 50px auto;		    	

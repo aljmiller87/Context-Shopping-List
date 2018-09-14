@@ -6,7 +6,8 @@ class FakeGame extends Component {
 		super();
 		this.state = {
 			exitFakeGame: false,
-			loading: true
+			loading: true,
+			popUp: false
 		}
 		this.exitFakeGame = this.exitFakeGame.bind(this);
 	}
@@ -15,7 +16,7 @@ class FakeGame extends Component {
 		// Sets timer for loading icon do fadeOut and fake game to render
 		if(!prevProps.showFakeGame && this.props.showFakeGame) {
 			setTimeout(() => {
-	          this.setState((prevState, props) => {
+	          	this.setState((prevState, props) => {
 		        	return ({
 		         		loading: false
 		        	})
@@ -33,24 +34,33 @@ class FakeGame extends Component {
 	   	this.props.buttonClick();
 	}
 
+	initPopUp() {
+		this.setState((prevState, props) => {
+        	return ({
+         		popUp: true
+        	})
+    	});
+	}
+
 
 	render() {
 		// Generating 141 fake cards
 		let fakeCards = [];
 	    for (var i = 1; i <+ 141; i++) {
-	        fakeCards.push(<li key={i} className="card"><div className="front">hello<span></span><span></span><span></span><span></span></div></li>);
+	        fakeCards.push(<li key={i} className="card"><div onClick={() => this.initPopUp} className="front">hello<span></span><span></span><span></span><span></span></div></li>);
 	    }
 
 	    // Set classes dependent on state
 	    let loadingClassName = this.state.loading ? "loading-element animated" : "loading-element animated fadeOut";
 	    // let fakeGameClass = this.state.loading ? "fakeGame animated" : "fakeGame animated fadeIn";
-	    let fakeGameClass = this.state.loading ? "fakeGame" : "fakeGame visible"
-	    let popUpClass = this.state.loading ? "pop-up" : "pop-up animated delay-3s bounceIn";
+	    let fakeGameClass = this.state.loading ? "fake-game" : "fake-game animate"
+	    let headerClass = this.state.loading ? "" : "animate";
+	    let popUpClass = this.state.popUp ? "pop-up" : "pop-up animated fadeInUp";
 
 		return (
 			<div id='fake-game-wrap' className={this.props.showFakeGame === true ? 'fake-game-wrap visible' : 'fake-game-wrap'}>
 				<ReactLoading type="spokes" color="#ffffff" height={50} width={50} className={loadingClassName}/>
-				<header className="">
+				<header className={headerClass}>
 					<div className="container">						
 						<div className="row">
 							<div className="col-xs-12">
