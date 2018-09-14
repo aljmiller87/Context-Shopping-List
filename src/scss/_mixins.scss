@@ -1,36 +1,3 @@
-/*
-  1. Animation
-  2. Breakpoint
-  3. Focus Underline
-  4. Keyframes
-  5. Linear Gradient
-  6. Overlay Gradient
-  7. Placeholder
-  8. Rotate
-  9. Scale
-  10. Skew
-  11. Transform
-  12. Translate
-  13. Transform Origin
-  14. Transition
-  15. Transition Property
-  16. Transition Duration
-  17. Transition Timing Function
-  18. Transition Delay
-  19. Icon Transition
-  20. :not using multiple arguments
-  --- HELPERS
-  21. Clear Absolute Position
-  22. Clear Button Defaults
-  23. Clear List Defaults
-  24. Group: Clearfix
-  25. Visually hidden
-  26. Container
-  27. Column
-  28. No Gutters
-*/
-
-
 // Animation
 @mixin animation($str) {
   -webkit-animation: #{$str};
@@ -88,34 +55,6 @@
     }
 }
 
-// Focus Underline
-// animated bottom border on focus
-// Example: https://codepen.io/omnombraaainz/pen/YYaYEx
-@mixin focus-underline($underline-color: $white) {
-    position: relative;
-    &:focus {
-        outline: none;
-        text-decoration: none;
-        &:after {
-            width: 100%;
-        }
-    }
-    &:after {
-        @include transition(width 150ms ease-in-out);
-        position: absolute;
-        right: 0;
-        bottom: -5px;
-        left: 0;
-        height: 2px;
-        width: 0;
-        margin: 0 auto;
-        background-color: $underline-color;
-        content: '';
-        @media screen and (max-width: 991px) {
-            content: none;
-        }
-    }
-}
 
 // Keyframes for CSS animations
 @mixin keyframes($animation-name) {
@@ -172,40 +111,6 @@
     }
 }
 
-// Overlaying Gradients
-// Adds a black vertical gradient that should be added to pseudo elements
-// Example: https://codepen.io/omnombraaainz/pen/WdzZYx
-    // Horizontal gradient
-@mixin gradientH {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    content: "";
-    pointer-events: none;
-    @include linear-gradient((rgba(0,0,0,0)), (rgba(0,0,0,0.65)), horizontal);
-}
-    // Vertical gradient
-@mixin gradientV {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    content: "";
-    pointer-events: none;
-    @include linear-gradient((rgba(0,0,0,0)), (rgba(0,0,0,0.8)), vertical);
-}
-
-// Placeholder styling for <input>
-@mixin placeholder {
-  &::-webkit-input-placeholder {@content}
-  &::-moz-placeholder           {@content}
-  &:-moz-placeholder           {@content}
-  &:-ms-input-placeholder      {@content}
-}
-
 // Rotate
 @mixin rotate($deg) {
   @include transform(rotate(#{$deg}deg));
@@ -223,11 +128,11 @@
 
 // Transform
 @mixin transform($transforms) {
-       -moz-transform: $transforms;
-         -o-transform: $transforms;
-        -ms-transform: $transforms;
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
     -webkit-transform: $transforms;
-          transform: $transforms;
+    transform: $transforms;
 }
 
 // Translate
@@ -238,10 +143,10 @@
 // Transform Origin
 @mixin transform-origin($origin) {
     moz-transform-origin: $origin;
-         -o-transform-origin: $origin;
-        -ms-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
     -webkit-transform-origin: $origin;
-          transform-origin: $origin;
+    transform-origin: $origin;
 }
 
 // Transition
@@ -276,75 +181,6 @@
     transition-delay:         $delay;
 }
 
-// SVG Icon Hover State
-// css background-image transitions don't work
-// add your initial state icon to :before and your hover/focus state icon to :after
-// Example: https://codepen.io/omnombraaainz/pen/qpopoR
-@mixin icon-transition($position: absolute, $top: 0, $right: inherit, $bottom: inherit, $left: 0, $height: 20px, $width: 20px) {
-    &:before, &:after {
-        position: $position;
-        top: $top;
-        right: $right;
-        bottom: $bottom;
-        left: $left;
-        height: $height;
-        width: $width;
-        content: '';
-    }
-    &:focus {
-        outline: none;
-        &:before {
-            @include transition(opacity 195ms cubic-bezier(0.0, 0.0, 0.2, 1));
-            opacity: 0;
-
-        }
-        &:after {
-            @include transition(opacity 195ms cubic-bezier(0.0, 0.0, 0.2, 1));
-            opacity: 1;
-        }
-    }
-    &:before {
-        @include transition(opacity 225ms cubic-bezier(0.4, 0.0, 0.6, 1));
-        opacity: 1;
-    }
-    &:after {
-        @include transition-delay(100ms);
-        opacity: 0;
-    }
-    &:hover {
-        &:before {
-            @include transition(opacity 195ms cubic-bezier(0.0, 0.0, 0.2, 1));
-            opacity: 0;
-
-        }
-        &:after {
-            @include transition(opacity 195ms cubic-bezier(0.0, 0.0, 0.2, 1));
-            opacity: 1;
-        }
-    }
-}
-
-// :not mixin
-// allows more than one argument
-@mixin not($ignorList...) {
-    //if only a single value given
-    @if (length($ignorList) == 1){
-        //it is probably a list variable so set ignore list to the variable
-        $ignorList: nth($ignorList,1);
-    }
-    //set up an empty $notOutput variable
-    $notOutput: '';
-    //for each item in the list
-    @each $not in $ignorList {
-        //generate a :not([ignored_item]) segment for each item in the ignore list and put them back to back
-        $notOutput: $notOutput + ':not(#{$not})';
-    }
-    //output the full :not() rule including all ignored items
-    &#{$notOutput} {
-        @content;
-    }
-}
-
 // List absolute positioning
 @mixin clear-absolute-position {
     position: relative;
@@ -353,6 +189,7 @@
     bottom: inherit;
     left: inherit;
 }
+
 // Clear defaults that usually show up on <button>
 @mixin clear-button-defaults {
     background: none;
@@ -361,6 +198,7 @@
     -moz-appearance: none;
     -webkit-appearance: none;
 }
+
 // Clear defaults that usually show up on <ul>
 @mixin clear-list-defaults {
     margin: 0;
@@ -382,54 +220,3 @@
     }
 }
 
-// group: clearfix
-@mixin group {
-    &:after {
-        content: '';
-        display: table;
-        clear: both;
-    }
-}
-
-// hide visually but not from screen readers
-@mixin visually-hidden {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    width: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-}
-
-// Container
-@mixin container($width: 100%, $max-width: 1395px, $padding: 15px) {
-    width: $width;
-    max-width: $max-width;
-    padding: 0 $padding;
-    margin: 0 auto;
-}
-
-// Column
-@mixin column($width: 100%, $padding: 15px) {
-    padding-right: $padding;
-    padding-left: $padding;
-    float: left;
-    @include breakpoint(sm-min) {
-        width: $width;
-    }
-    @include breakpoint(xs) {
-        width: $width;
-    }
-}
-
-// No gutters on rows
-@mixin no-gutters {
-    margin-right: 0;
-    margin-left: 0;
-    > [class*="col-"] {
-      padding-right: 0;
-      padding-left: 0;
-    }
-}

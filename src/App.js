@@ -48,6 +48,7 @@ class App extends Component {
 
   }
 
+  // Generates cards when component first mounts
   componentDidMount() {
     this.generateCards();
   }
@@ -74,6 +75,8 @@ class App extends Component {
     }
   }
 
+  // When into screen button is clicked, app will take user to fake game
+  // or, if fake game has already been viewed, will enter real game
   enterFakeGame() {    
     if(this.state.hasShownFakeGameOnce === false) {
       this.setState({
@@ -91,7 +94,6 @@ class App extends Component {
   }
 
   enterGame() {
-    console.log('called enter game');
     this.setState({
       showIntro: false,
       showFakeGame: false,
@@ -108,7 +110,6 @@ class App extends Component {
   }
 
   cardsFlipped(type) {
-    console.log('type in App cardsFlipped', type);
     // Check if this is the first or second card flipped
     // If card flipped is first card flipped
     if (this.state.cardsFlipped === 0) {
@@ -163,6 +164,7 @@ class App extends Component {
     this.generateCards();
   }
 
+  // Adds the type to each cards, only two cards will share a type
   generateCards() {
     let cards = [];
     for(let i=1; i<= this.state.numberofCards; i++) {
@@ -172,6 +174,7 @@ class App extends Component {
     this.shuffle(cards);
   }
 
+  // Shuffles all cards
   shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -204,9 +207,10 @@ class App extends Component {
     // Set classes dependent on state, mainly to control animations
     let headerClass = this.state.loading ? "" : "animate";
     let loadingClassName = this.state.loading ? "loading-element animated" : "loading-element animated fadeOut";
-    let popUpClass = this.state.endGame ? "pop-up animate" : "pop-up";
+    let newGameButtonClass = this.state.loading ? "btn white new-game-btn" : "btn white new-game-btn animate";
+    let popUpClass = this.state.endGame ? "pop-up animate" : "pop-up";    
 
-    // winner
+    // When app has ended game, this declares winner for UI
     let winner; 
     if (this.state.endGame) {
       if (this.state.playerOneScore > this.state.playerTwoScore) {
@@ -220,6 +224,8 @@ class App extends Component {
       <div className={appClass}>
         <IntroPage showIntro={this.state.showIntro} buttonClick={this.enterFakeGame} />
         <FakeGame showFakeGame={this.state.showFakeGame} buttonClick={this.enterGame} />
+
+        {/*Next step: break out game into it's own compoenent*/}
         <div className={this.state.showGame === true ? 'game-wrap visible' : 'game-wrap'}>
           <ReactLoading type="spokes" color="#ffffff" height={50} width={50} className={loadingClassName}/>
           <div className={popUpClass}>
@@ -227,17 +233,17 @@ class App extends Component {
             <p>{winner}</p>
             <button className="btn blue" onClick={this.newGame}>New Game</button>
           </div>
+          <button className={newGameButtonClass} onClick={this.newGame}>New Game</button>
           <header className={headerClass}>
             <div className="container">
               <div className="row">
                 <div className="col-xs-12">
                   <ul>
                     <li><h1>Memory Game</h1></li>
-                    <li>Player 1: {this.state.playerOneScore}</li>
-                    <li>Player 2: {this.state.playerTwoScore}</li>
-                    <li>
-                      <button className="btn white" onClick={this.newGame}>New Game</button>
-                      <button className="btn white" onClick={this.exitGame}>X</button>
+                    <li><span>Player 1: {this.state.playerOneScore}</span></li>
+                    <li><span>Player 2: {this.state.playerTwoScore}</span></li>
+                    <li>                      
+                      <span className="icon-x" onClick={this.exitGame}></span>
                     </li>
                   </ul>
                 </div>
