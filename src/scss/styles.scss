@@ -1,6 +1,58 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700|Open+Sans:300,400,600,700');
+@import "cart_responsive";
+@import "cart";
+@import "categories_responsive";
+@import "categories";
+@import "checkout_responsive";
+@import "checkout";
+@import "contact_responsive";
+@import "contact";
+@import "main_styles";
+@import "product_responsive";
+@import "product";
+@import "responsive";
 
-@import 'variables';
-@import 'mixins';
-@import 'typography';
-@import 'components';
+.header {
+    .shopping_cart {
+        button {
+            background: none;
+            border: none;
+            color: #767676;
+            font-size: 16px;
+            font-weight: 600;
+            -webkit-transition: all 200ms ease;
+            -moz-transition: all 200ms ease;
+            -ms-transition: all 200ms ease;
+            -o-transition: all 200ms ease;
+            transition: all 200ms ease;
+
+            &:hover {
+                color: #1b1b1b;
+            }
+        }
+    }
+} 
+
+.product_extra {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 36px;
+}
+
+.product_content {
+    button {
+        position: relative;
+        width: 178px;
+        height: 61px;
+        border: solid 2px #1b1b1b;
+        background: #FFFFFF;
+        cursor: pointer;
+        margin-top: 20px;
+        overflow: hidden;
+    }
+}
+
+footer.footer {
+    position: relative;
+}
