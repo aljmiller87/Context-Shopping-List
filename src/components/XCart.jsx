@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import CartLevel1 from './CartLevel1';
 
-import MyContext from './../context/Context';
 
-export default class Cart extends Component {
+
+class Cart extends Component {
     constructor(props) {
       super(props)
     
@@ -15,7 +14,7 @@ export default class Cart extends Component {
     render() {
 
         return (
-            <div className="Cart cart_info">
+            <div className="cart_info">
                 <div className="container">
                     <div className="row">
                         <div className="col">
@@ -28,24 +27,48 @@ export default class Cart extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="row cart_items_row">
+                        <div className="col">
 
-                    <CartLevel1 />
+                            {/* <!-- Cart Item --> */}
+                            <div className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                {/* <!-- Name --> */}
+                                <div className="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                                    <div className="cart_item_image">
+                                        <div><img src="images/cart_1.jpg" alt=""></div>
+                                    </div>
+                                    <div className="cart_item_name_container">
+                                        <div className="cart_item_name"><a href="#">Smart Phone Deluxe Edition</a></div>
+                                        <div className="cart_item_edit"><a href="#">Edit Product</a></div>
+                                    </div>
+                                </div>
+                                {/* <!-- Price --> */}
+                                <div className="cart_item_price">$790.90</div>
+                                {/* <!-- Quantity --> */}
+                                <div className="cart_item_quantity">
+                                    <div className="product_quantity_container">
+                                        <div className="product_quantity clearfix">
+                                            <span>Qty</span>
+                                            <input id="quantity_input" type="text" pattern="[0-9]*" value="1" />
+                                            <div className="quantity_buttons">
+                                                <div id="quantity_inc_button" className="quantity_inc quantity_control"><i className="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                                <div id="quantity_dec_button" className="quantity_dec quantity_control"><i className="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* <!-- Total --> */}
+                                <div className="cart_item_total">$790.90</div>
+                            </div>
 
+                        </div>
+                    </div>
                     <div className="row row_cart_buttons">
                         <div className="col">
                             <div className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
                                 <div className="button continue_shopping_button"><a href="#">Continue shopping</a></div>
                                 <div className="cart_buttons_right ml-lg-auto">
-                                    <MyContext.Consumer>
-                                        {(context) => {
-                                            return (
-                                                <div className="button clear_cart_button">
-                                                    <a onClick={() => context.clearCart()}  href="#">Clear cart</a>
-                                                </div>
-                                            )}
-                                        }
-                                    </MyContext.Consumer>
-
+                                    <div className="button clear_cart_button"><a href="#">Clear cart</a></div>
                                     <div className="button update_cart_button"><a href="#">Update cart</a></div>
                                 </div>
                             </div>
@@ -98,47 +121,15 @@ export default class Cart extends Component {
                                     <ul>
                                         <li className="d-flex flex-row align-items-center justify-content-start">
                                             <div className="cart_total_title">Subtotal</div>
-                                            <MyContext.Consumer>
-                                                {(context) => {
-                                                    let subtotal = 0;
-                                                    context.cartProducts.forEach((product) => {
-                                                        subtotal = subtotal + (product.price * product.quantity)
-                                                    })
-                                                    return (
-                                                        
-                                                        <div className="cart_total_value ml-auto">${subtotal}</div>
-                                                    )}
-                                                }
-                                            </MyContext.Consumer>
-
-
-
-                                            
+                                            <div className="cart_total_value ml-auto">$790.90</div>
                                         </li>
-                                        <li className="d-flex flex-row align-items-center justify-content-start">
-                                            <div className="cart_total_title">Tax</div>
-                                            <div className="cart_total_value ml-auto">Taxation is theft</div>
-                                        </li>
-
                                         <li className="d-flex flex-row align-items-center justify-content-start">
                                             <div className="cart_total_title">Shipping</div>
                                             <div className="cart_total_value ml-auto">Free</div>
                                         </li>
                                         <li className="d-flex flex-row align-items-center justify-content-start">
                                             <div className="cart_total_title">Total</div>
-                                            <MyContext.Consumer>
-                                                {(context) => {
-                                                    let subtotal = 0;
-                                                    context.cartProducts.forEach((product) => {
-                                                        subtotal = subtotal + (product.price * product.quantity)
-                                                    })
-                                                    return (
-                                                        
-                                                        <div className="cart_total_value ml-auto">${subtotal}</div>
-                                                    )}
-                                                }
-                                            </MyContext.Consumer>
-
+                                            <div className="cart_total_value ml-auto">$790.90</div>
                                         </li>
                                     </ul>
                                 </div>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import MyContext from './../context/Context';
+
 export default class Product extends Component {
     constructor(props) {
         super(props)
@@ -35,7 +37,13 @@ export default class Product extends Component {
                 <div className="product_content">
                     <div className="product_title"><a href="product.html">{this.props.name}</a></div>
                     <div className="product_price">${this.props.price}</div>
-                    <button className="trans_200"><span>Add to Cart</span></button>
+                    <MyContext.Consumer>
+                        {(context) => (
+                            <button onClick={() => context.addToCart(this.props.id)} className="newsletter_button trans_200"><span>Add to Cart</span></button>
+                        )}
+                    </MyContext.Consumer>
+
+                    
                 </div>
             </div>
         )

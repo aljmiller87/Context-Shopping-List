@@ -2,13 +2,25 @@ import React, { Component } from 'react';
 import SearchIcon from './../images/search.svg'
 import ShoppingIcon from './../images/shopping.svg'
 
+import MyContext from './../context/Context';
+
 export default class Header extends Component {
     constructor(props) {
+      
       super(props)
     
       this.state = {
          
       }
+    }
+
+    cartTrigger() {
+      console.log('cart trigger');
+      let cart = document.querySelector('.Cart');
+      if(cart) {
+        cart.classList.toggle('open');
+      }
+      // document.querySelector('.Cart').classList.toggle('open');
     }
 
     render() {
@@ -24,9 +36,17 @@ export default class Header extends Component {
                         <div className="logo"><a href="#">React Context</a></div>
                         <div className="header_extra ml-auto">
                           <div className="shopping_cart">
-                            <button>
+                            <button onClick={() => this.cartTrigger()}>
                               {/* <ShoppingCartIcon /> */}
-                              <div>Cart <span>({this.props.cart})</span></div>
+                              <div>Cart (
+                                
+                                <MyContext.Consumer>
+                                    {(context) => (
+                                        <span>{context.cart}</span>
+                                    )}
+                                </MyContext.Consumer>
+                              )
+                              </div>
                             </button>
                           </div>
                           <div className="search">
