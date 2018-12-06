@@ -1,9 +1,3 @@
-# View Code
-https://mymemorygame.netlify.com/
-
-
-
-
 
 
 
