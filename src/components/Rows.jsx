@@ -23,6 +23,7 @@ export default class Rows extends Component {
                                 key={index}
                                 id={product.id}
                                 quantity={product.quantity}
+                                context={context}
                             />
                         )
                     })

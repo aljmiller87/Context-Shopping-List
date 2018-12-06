@@ -1,23 +1,20 @@
 import React, { Component } from 'react'
 import Product from './Product';
 
+
 import MyContext from './../context/Context';
 
  export default class Products extends Component {
     constructor(props) {
        super(props)
-     
-       this.state = {
-          
-       }
+       
     }
 
     componentDidMount() {
 		let productList = [];
-
-		this.setState({products: productList})
-
+    this.setState({products: productList})
     }
+
 
     render() {
         // const products = this.props.products.map((product, index) => {

@@ -70,12 +70,11 @@ footer.footer {
     transition: transform .3s linear;;
     z-index: 5;
 
-    -webkit-box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
-    box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
-
     &.open {
-        transform: translateY(0)
+        transform: translateY(0);
+        -webkit-box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
+        box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
     }
 
     .cart_item_quantity {
@@ -95,6 +94,14 @@ footer.footer {
             }
         }
     }
+}
+
+.LoadingElement {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    z-index: 150;
 }
 
 

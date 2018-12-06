@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import AppContext from './AppContext.jsx';
+import { TweenMax, Bounce } from 'gsap';
 
 import MyContext from './Context';
 
@@ -77,6 +77,7 @@ export default class MyProvider extends Component {
   
       this.addToCart = this.addToCart.bind(this);
       this.productInCart = this.productInCart.bind(this);
+      this.animateCartButton = this.animateCartButton.bind(this);
     }
 
     componentDidMount() {
@@ -124,6 +125,12 @@ export default class MyProvider extends Component {
         cart: this.state.cart + 1,
         cartProducts
       });
+
+      this.animateCartButton();
+    }
+
+    animateCartButton() {
+      TweenMax.from(".cartButton", 1, {scale:1.15, color:"#D8635F", ease: Bounce.easeOut})
     }
 
     clearCart() {

@@ -5,10 +5,8 @@ import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import ProductList from './components/ProductList.jsx';
 import MyProvider from './context/Provider.jsx';
-import MyConsumer from './context/Consumer.jsx';
-
-// import Family from './components/Family.jsx';
-// import Person from './components/Person.jsx';
+import ReactLoading from 'react-loading';
+import {TimelineMax} from 'gsap';
 
 
 import FooterImg from './images/footer.jpg';
@@ -21,15 +19,8 @@ class AppProvider extends Component {
   constructor(props) {
     super(props)
   
-    this.state = {
-      cart: 0,
-      name: 'Alex',
-      age: 31,
-      cool: true,
-
-      
-    }
   }
+  
   
   render() {
     return (
@@ -44,14 +35,20 @@ class AppProvider extends Component {
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      
-    }
-
-
+    this.initProductAnimation = this.initProductAnimation.bind(this);
   }
 
- 
+  componentDidMount() {
+    this.initProductAnimation();
+  }
+
+  initProductAnimation() {
+    const tl = new TimelineMax();
+    tl
+      .to(".LoadingElement", .5, {opacity:0, delay: 1.25})
+      .from(".header", .25, {opacity:0, yPercent: -100})
+      .staggerFrom('.product', 0.25, {y:100, opacity:0, delay: .2}, .075);
+  }
 
 
   render() {  
@@ -59,16 +56,11 @@ class App extends Component {
     return (      
       <MyProvider>
         <div>
+            <ReactLoading type="spokes" color="#000000" height={75} width={75} className="LoadingElement"/>
             <Cart />
-            <Header />
-            
-            <button onClick={this.addToCart}>Add to cart</button>
-            
-            {/* <ProductList products={this.state.products} addToCart={this.addToCart}/> */}
+            <Header />              
             <ProductList />            
-
-            <Footer img={FooterImg} />
-            
+            <Footer img={FooterImg} />            
         </div>  
       </MyProvider>     
     );

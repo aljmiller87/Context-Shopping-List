@@ -38,7 +38,7 @@ export default class Header extends Component {
                           <div className="shopping_cart">
                             <button onClick={() => this.cartTrigger()}>
                               {/* <ShoppingCartIcon /> */}
-                              <div>Cart (
+                              <div className="cartButton">Cart (
                                 
                                 <MyContext.Consumer>
                                     {(context) => (
