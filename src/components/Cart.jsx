@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CartLevel1 from './CartLevel1';
 
-import MyContext from './../context/Context';
+import ShoppingCartContext from '../context/ShoppingCartContext';
 
 export default class Cart extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ export default class Cart extends Component {
     }
 
     render() {
-
+        console.log('cart rendered');
         return (
             <div className="Cart cart_info">
                 <div className="container">
@@ -36,7 +36,7 @@ export default class Cart extends Component {
                             <div className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
                                 <div className="button continue_shopping_button"><a href="#">Continue shopping</a></div>
                                 <div className="cart_buttons_right ml-lg-auto">
-                                    <MyContext.Consumer>
+                                    <ShoppingCartContext.Consumer>
                                         {(context) => {
                                             return (
                                                 <div className="button clear_cart_button">
@@ -44,7 +44,7 @@ export default class Cart extends Component {
                                                 </div>
                                             )}
                                         }
-                                    </MyContext.Consumer>
+                                    </ShoppingCartContext.Consumer>
 
                                     <div className="button update_cart_button"><a href="#">Update cart</a></div>
                                 </div>
@@ -98,7 +98,7 @@ export default class Cart extends Component {
                                     <ul>
                                         <li className="d-flex flex-row align-items-center justify-content-start">
                                             <div className="cart_total_title">Subtotal</div>
-                                            <MyContext.Consumer>
+                                            <ShoppingCartContext.Consumer>
                                                 {(context) => {
                                                     let subtotal = 0;
                                                     context.cartProducts.forEach((product) => {
@@ -109,7 +109,7 @@ export default class Cart extends Component {
                                                         <div className="cart_total_value ml-auto">${subtotal}</div>
                                                     )}
                                                 }
-                                            </MyContext.Consumer>
+                                            </ShoppingCartContext.Consumer>
 
 
 
@@ -126,7 +126,7 @@ export default class Cart extends Component {
                                         </li>
                                         <li className="d-flex flex-row align-items-center justify-content-start">
                                             <div className="cart_total_title">Total</div>
-                                            <MyContext.Consumer>
+                                            <ShoppingCartContext.Consumer>
                                                 {(context) => {
                                                     let subtotal = 0;
                                                     context.cartProducts.forEach((product) => {
@@ -137,7 +137,7 @@ export default class Cart extends Component {
                                                         <div className="cart_total_value ml-auto">${subtotal}</div>
                                                     )}
                                                 }
-                                            </MyContext.Consumer>
+                                            </ShoppingCartContext.Consumer>
 
                                         </li>
                                     </ul>

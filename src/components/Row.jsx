@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import MyContext from './../context/Context';
+import React from 'react'
 
 const Row = (props) => {
-
-        let index = props.context.findProductIndex(props.id);
-        let cartIndex = props.context.productInCart(props.id);
+        
+        let index = props.context.findProductInProducts(props.id);
+        let cartIndex = props.context.findProductInCart(props.id);
 
         return (
             <div className="row cart_items_row">

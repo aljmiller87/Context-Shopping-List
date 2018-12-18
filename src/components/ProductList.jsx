@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Product from './Product';
 
 
-import MyContext from './../context/Context';
+import ShoppingCartContext from '../context/ShoppingCartContext';
 
  export default class Products extends Component {
     constructor(props) {
@@ -17,6 +17,7 @@ import MyContext from './../context/Context';
 
 
     render() {
+      console.log('product list rendered');
         // const products = this.props.products.map((product, index) => {
         //   return (
             // <Product
@@ -40,7 +41,7 @@ import MyContext from './../context/Context';
                     <div className="product_grid">
 
 					  					{/* {products} */}
-											<MyContext.Consumer>
+											<ShoppingCartContext.Consumer>
 												{(context) => {
 													let products = context.products.map((product, index) => {
 														return (
@@ -56,7 +57,7 @@ import MyContext from './../context/Context';
 													})
 													return products
 												}}
-											</MyContext.Consumer>
+											</ShoppingCartContext.Consumer>
 
                     </div>                      
                   </div>

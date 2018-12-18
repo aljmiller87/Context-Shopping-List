@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CartLevel3 from './CartLevel3';
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TweenMax, Bounce } from 'gsap';
 
-import MyContext from './Context';
+import ShoppingCartContext from './ShoppingCartContext';
 
 export default class MyProvider extends Component {
     constructor(props) {
@@ -10,8 +10,8 @@ export default class MyProvider extends Component {
       this.state = {
         addToCart: this.addToCart.bind(this),
         clearCart: this.clearCart.bind(this),
-        findProductIndex: this.findProductIndex.bind(this),
-        productInCart: this.productInCart.bind(this),
+        findProductInProducts: this.findProductInProducts.bind(this),
+        findProductInCart: this.findProductInCart.bind(this),
         removeFromCart: this.removeFromCart.bind(this),
         cart: 0,
         cartProducts: [],
@@ -75,14 +75,10 @@ export default class MyProvider extends Component {
         ]
       }
   
-      this.addToCart = this.addToCart.bind(this);
-      this.productInCart = this.productInCart.bind(this);
-      this.animateCartButton = this.animateCartButton.bind(this);
     }
 
     componentDidMount() {
       let state = JSON.parse(window.localStorage.getItem("saved_state"));
-      console.log(state);
 
       if (state) {
         this.setState({
@@ -107,7 +103,7 @@ export default class MyProvider extends Component {
       let cartProducts = this.state.cartProducts;
 
       // Checking if product is already in cart
-      let foundProduct = this.productInCart(productID);
+      let foundProduct = this.findProductInCart(productID);
 
       // Setting state by either adding product to cart or updating product's quantity in cart
       if (foundProduct !== -1) {
@@ -116,7 +112,7 @@ export default class MyProvider extends Component {
       } else {
         cartProducts[cartProducts.length] = {
           id: productID,
-          price: this.state.products[this.findProductIndex(productID)].price,
+          price: this.state.products[this.findProductInProducts(productID)].price,
           quantity: 1
         }
       }
@@ -141,12 +137,12 @@ export default class MyProvider extends Component {
 
     }
 
-    findProductIndex(id) {
-      return this.state.products.findIndex(item => item.id == id)
-    }
-
-    productInCart(id) {
+    findProductInCart(id) {
       return this.state.cartProducts.findIndex(item => item.id == id)
+    }
+    
+    findProductInProducts(id) {
+      return this.state.products.findIndex(item => item.id == id)
     }
 
     removeFromCart(productID) {
@@ -154,7 +150,7 @@ export default class MyProvider extends Component {
       let cartProducts = this.state.cartProducts;
 
       // Finding index of product in cart
-      let index = this.productInCart(productID);
+      let index = this.findProductInCart(productID);
 
       // Setting state by either adding product to cart or updating product's quantity in cart
       let productQuantity = this.state.cartProducts[index].quantity;
@@ -173,13 +169,13 @@ export default class MyProvider extends Component {
   
   
     render() {
+      console.log('provider rerendered');
       return (
-        <MyContext.Provider
+        <ShoppingCartContext.Provider
             value={{ ...this.state }}
-            addToCart={this.addToCart}
             >
             {this.props.children}
-        </MyContext.Provider >
+        </ShoppingCartContext.Provider >
       )
     }
   }

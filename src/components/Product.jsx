@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MyContext from './../context/Context';
+import ShoppingCartContext from '../context/ShoppingCartContext';
 
 export default class Product extends Component {
     constructor(props) {
@@ -10,6 +10,7 @@ export default class Product extends Component {
     }
 
     render() {
+        console.log('product rendered');
         let imageURL = `images/${this.props.image}`;
         let optionClass;
         let optionText = this.props.option;
@@ -37,11 +38,11 @@ export default class Product extends Component {
                 <div className="product_content">
                     <div className="product_title"><a href="product.html">{this.props.name}</a></div>
                     <div className="product_price">${this.props.price}</div>
-                    <MyContext.Consumer>
+                    <ShoppingCartContext.Consumer>
                         {(context) => (
                             <button onClick={() => context.addToCart(this.props.id)} className="newsletter_button trans_200"><span>Add to Cart</span></button>
                         )}
-                    </MyContext.Consumer>
+                    </ShoppingCartContext.Consumer>
 
                     
                 </div>

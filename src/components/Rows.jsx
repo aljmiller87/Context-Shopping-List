@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Row from './Row';
-import MyContext from './../context/Context';
+import ShoppingCartContext from '../context/ShoppingCartContext';
 
 export default class Rows extends Component {
     constructor(props) {
@@ -12,10 +12,12 @@ export default class Rows extends Component {
     }
     
     render() {
+
+        console.log('rows rendered');
         return (
             <div>
             {/* {Cart Products} */}
-            <MyContext.Consumer>
+            <ShoppingCartContext.Consumer>
                 {(context) => {
                     let products = context.cartProducts.map((product, index) => {
                         return (
@@ -29,7 +31,7 @@ export default class Rows extends Component {
                     })
                     return products
                 }}
-            </MyContext.Consumer>
+            </ShoppingCartContext.Consumer>
             </div>
 
         )
