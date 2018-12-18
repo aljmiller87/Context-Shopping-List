@@ -45,7 +45,7 @@ export default class Header extends Component {
                                   console.log(context);
                                   return (
                                   
-                                  <Toggle click={context.changeTheme}/>
+                                  <Toggle click={context.changeTheme} theme={context.darkTheme}/>
                                 )}}          
                               </ThemeContext.Consumer>
                             </li>

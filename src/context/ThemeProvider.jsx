@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { TweenMax, Bounce } from 'gsap';
 
 import ThemeContext from './ThemeContext';
 
@@ -14,6 +13,24 @@ export default class ThemeProvider extends Component {
 
 
     }
+
+    componentDidMount() {
+        let state = JSON.parse(window.localStorage.getItem("saved_theme"));
+  
+        if (state) {
+          this.setState({
+            darkTheme: state.darkTheme
+          });
+        }
+      }
+      
+      componentDidUpdate() {
+        let state = {
+            darkTheme: this.state.darkTheme
+        };
+        window.localStorage.setItem("saved_theme", JSON.stringify(state))
+      }
+  
   
     changeTheme() {
         console.log('changeTheme called');
