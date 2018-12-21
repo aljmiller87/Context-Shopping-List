@@ -4,8 +4,12 @@ import Cart from './components/Cart.jsx';
 import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import ProductList from './components/ProductList.jsx';
+
+// Providers
 import ShoppingCartProvider from './context/ShoppingCartProvider.jsx';
 import ThemeProvider from './context/ThemeProvider.jsx';
+// End Providers
+
 import ReactLoading from 'react-loading';
 import {TimelineMax} from 'gsap';
 

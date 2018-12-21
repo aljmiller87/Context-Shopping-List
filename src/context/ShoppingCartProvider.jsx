@@ -77,6 +77,7 @@ export default class MyProvider extends Component {
   
     }
 
+    // Checks local storage for state
     componentDidMount() {
       let state = JSON.parse(window.localStorage.getItem("saved_state"));
 
@@ -88,6 +89,7 @@ export default class MyProvider extends Component {
       }
     }
     
+    // Sets state info to local storage
     componentDidUpdate() {
       let cart = {...this.state.cartProducts}
       let cartProducts = [...this.state.cartProducts]
@@ -110,11 +112,11 @@ export default class MyProvider extends Component {
         let productQuantity = this.state.cartProducts[foundProduct].quantity;
         cartProducts[foundProduct].quantity = productQuantity + 1
       } else {
-        cartProducts[cartProducts.length] = {
+        cartProducts.push({
           id: productID,
           price: this.state.products[this.findProductInProducts(productID)].price,
           quantity: 1
-        }
+        })
       }
       
       this.setState({

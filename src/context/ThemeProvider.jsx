@@ -14,6 +14,7 @@ export default class ThemeProvider extends Component {
 
     }
 
+    // Checks if state exists in local storage
     componentDidMount() {
         let state = JSON.parse(window.localStorage.getItem("saved_theme"));
   
@@ -22,14 +23,15 @@ export default class ThemeProvider extends Component {
             darkTheme: state.darkTheme
           });
         }
-      }
-      
-      componentDidUpdate() {
+    }
+    
+    // Sets state in local storage
+    componentDidUpdate() {
         let state = {
             darkTheme: this.state.darkTheme
         };
         window.localStorage.setItem("saved_theme", JSON.stringify(state))
-      }
+    }
   
   
     changeTheme() {
