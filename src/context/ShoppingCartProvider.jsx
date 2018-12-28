@@ -91,7 +91,7 @@ export default class MyProvider extends Component {
     
     // Sets state info to local storage
     componentDidUpdate() {
-      let cart = {...this.state.cartProducts}
+      // let cart = {...this.state.cartProducts}
       let cartProducts = [...this.state.cartProducts]
       let state = {
         cart: this.state.cart,

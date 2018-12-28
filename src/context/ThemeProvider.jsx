@@ -42,7 +42,7 @@ export default class ThemeProvider extends Component {
     }
   
     render() {
-        let themeClass = this.state.darkTheme == true ? 'ThemeDark' : '';
+        let themeClass = this.state.darkTheme === true ? 'ThemeDark' : '';
       return (
         <ThemeContext.Provider
             value={{ ...this.state }}

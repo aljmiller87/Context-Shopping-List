@@ -1,23 +1,20 @@
 import React, { Component } from 'react'
 import Product from './Product';
-
-
 import ShoppingCartContext from '../context/ShoppingCartContext';
+import Isotope from '../utils/isotope';
+
 
  export default class Products extends Component {
-    constructor(props) {
-       super(props)
-       
-    }
 
     componentDidMount() {
-		let productList = [];
-    this.setState({products: productList})
+      let productList = [];
+      this.setState({products: productList})
     }
 
 
     render() {
       console.log('product list rendered');
+      Isotope();
         // const products = this.props.products.map((product, index) => {
         //   return (
             // <Product

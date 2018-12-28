@@ -61,7 +61,7 @@ export default class Cart extends Component {
                                 <div className="delivery_options">
                                     <label className="delivery_option clearfix">Next day delivery
                                         <input type="radio" name="radio" />
-                                        <span className="checkmark"></span>
+                                        <span className="checkmark" ></span>
                                         <span className="delivery_price">$4.99</span>
                                     </label>
                                     <label className="delivery_option clearfix">Standard delivery

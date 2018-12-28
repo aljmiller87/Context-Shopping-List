@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
 import './scss/styles.scss';
+import React, { Component } from 'react';
+import { Router, Route, hashHistory } from 'react-router';
+import ReactLoading from 'react-loading';
+import {TimelineMax} from 'gsap';
+
 import Cart from './components/Cart.jsx';
+import Checkout from './components/Checkout';
 import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import ProductList from './components/ProductList.jsx';
+import FooterImg from './images/footer.jpg';
 
 // Providers
 import ShoppingCartProvider from './context/ShoppingCartProvider.jsx';
 import ThemeProvider from './context/ThemeProvider.jsx';
 // End Providers
 
-import ReactLoading from 'react-loading';
-import {TimelineMax} from 'gsap';
-
-
-import FooterImg from './images/footer.jpg';
 
 class App extends Component {
   constructor() {
@@ -36,15 +37,17 @@ class App extends Component {
 
 
   render() {  
-      
     return (      
       <ThemeProvider>
         <div>
             <ReactLoading type="spokes" color="#000000" height={75} width={75} className="LoadingElement"/>
             <ShoppingCartProvider>
-              <Cart />                          
-              <Header />                  
-              <ProductList /> 
+                <Cart />                          
+                <Header />         
+                <Router history={hashHistory}>
+                    <Route path="/" component={ProductList} />
+                    <Route path="/checkout" component={Checkout} />
+                </Router>         
             </ShoppingCartProvider>                     
             <Footer img={FooterImg} />            
         </div>        
