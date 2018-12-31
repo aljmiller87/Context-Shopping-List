@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import SearchIcon from './../images/search.svg'
 import ShoppingIcon from './../images/shopping.svg'
 
@@ -16,14 +17,6 @@ export default class Header extends Component {
       }
     }
 
-    cartTrigger() {
-      console.log('cart trigger');
-      let cart = document.querySelector('.Cart');
-      if(cart) {
-        cart.classList.toggle('open');
-      }
-      // document.querySelector('.Cart').classList.toggle('open');
-    }
 
     render() {
         console.log('header rendered');
@@ -35,9 +28,14 @@ export default class Header extends Component {
                   <div className="row">
                     <div className="col">
                       <div className="header_content d-flex flex-row align-items-center justify-content-start">
-                        <div className="logo"><a href="#">React Context</a></div>
+                        <div className="logo">
+                        <Link to="/">React Context</Link>
+                        </div>
                         <nav className="main_nav">
                           <ul>
+                            <li>
+                              <Link to="/checkout">Checkout</Link>
+                            </li>
                             <li>Dark Theme Toggle:</li>
                             <li>
                               <ThemeContext.Consumer>
@@ -52,20 +50,20 @@ export default class Header extends Component {
                           </ul>
                         </nav>
                         <div className="header_extra ml-auto">
-                          <div className="shopping_cart">
-                            <button onClick={() => this.cartTrigger()}>
-                              {/* <ShoppingCartIcon /> */}
-                              <div className="cartButton">Cart (
+                         {/* <ShoppingCartIcon /> */}
+                         <ShoppingCartContext.Consumer>
+                            {(context) => (
+                              <div className="shopping_cart">
+                                <button onClick={() => context.cartTrigger()}>
                                 
-                                <ShoppingCartContext.Consumer>
-                                    {(context) => (
-                                        <span>{context.cart}</span>
-                                    )}
-                                </ShoppingCartContext.Consumer>
-                              )
+                                  <div className="cartButton">Cart (
+                                    <span>{context.cart}</span>
+                                    )
+                                  </div>
+                                </button>
                               </div>
-                            </button>
-                          </div>
+                            )}
+                          </ShoppingCartContext.Consumer>
                           <div className="search">
                             <div className="search_icon">
                               {/* <SearchIcon /> */}

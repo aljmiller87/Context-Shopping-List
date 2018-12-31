@@ -9,6 +9,7 @@ export default class MyProvider extends Component {
     
       this.state = {
         addToCart: this.addToCart.bind(this),
+        cartTrigger: this.cartTrigger.bind(this),
         clearCart: this.clearCart.bind(this),
         findProductInProducts: this.findProductInProducts.bind(this),
         findProductInCart: this.findProductInCart.bind(this),
@@ -131,6 +132,13 @@ export default class MyProvider extends Component {
       TweenMax.from(".cartButton", 1, {scale:1.15, color:"#D8635F", ease: Bounce.easeOut})
     }
 
+    cartTrigger() {
+      let cart = document.querySelector('.Cart');
+      if(cart) {
+        cart.classList.toggle('open');
+      }
+    }
+
     clearCart() {
       this.setState({
         cart: 0,
@@ -139,12 +147,13 @@ export default class MyProvider extends Component {
 
     }
 
+
     findProductInCart(id) {
-      return this.state.cartProducts.findIndex(item => item.id == id)
+      return this.state.cartProducts.findIndex(item => item.id === id)
     }
     
     findProductInProducts(id) {
-      return this.state.products.findIndex(item => item.id == id)
+      return this.state.products.findIndex(item => item.id === id)
     }
 
     removeFromCart(productID) {

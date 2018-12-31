@@ -71,6 +71,7 @@ footer.footer {
     z-index: 5;
 
     &.open {
+        position: fixed;
         transform: translateY(0);
         -webkit-box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
         -moz-box-shadow: 0px 11px 15px 0px rgba(0,0,0,0.5);
@@ -94,6 +95,10 @@ footer.footer {
             }
         }
     }
+}
+
+.home {
+    height: 362px !important;
 }
 
 .LoadingElement {
