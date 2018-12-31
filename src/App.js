@@ -16,8 +16,8 @@ import ThemeProvider from './context/ThemeProvider.jsx';
 
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.initProductAnimation = this.initProductAnimation.bind(this);
     }
 
@@ -43,10 +43,6 @@ class App extends Component {
                         <Cart />
                         <Header />
                         {this.props.children}
-                        {/* <Router history={hashHistory}>                                
-                            <Route path="/" component={ProductList} />
-                            <Route path="/checkout" component={Checkout} />
-                        </Router>          */}
                     </ShoppingCartProvider>                     
                     <Footer img={FooterImg} />            
                 </div>        

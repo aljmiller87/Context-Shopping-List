@@ -35,7 +35,6 @@ export default class ThemeProvider extends Component {
   
   
     changeTheme() {
-        console.log('changeTheme called');
         this.setState({
             darkTheme: !this.state.darkTheme
         });

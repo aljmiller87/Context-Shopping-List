@@ -1,11 +1,12 @@
 import React from 'react'
 import CartLevel1 from './CartLevel1';
-import { Router, Route, IndexRoute, hashHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 
 
 import ShoppingCartContext from '../context/ShoppingCartContext';
 
 const Cart = (props) => {
+
     return (
         <div className="Cart cart_info">
             <div className="container">

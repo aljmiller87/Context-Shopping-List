@@ -11,6 +11,7 @@ export default class MyProvider extends Component {
         addToCart: this.addToCart.bind(this),
         cartTrigger: this.cartTrigger.bind(this),
         clearCart: this.clearCart.bind(this),
+        closeCart: this.closeCart.bind(this),
         findProductInProducts: this.findProductInProducts.bind(this),
         findProductInCart: this.findProductInCart.bind(this),
         removeFromCart: this.removeFromCart.bind(this),
@@ -147,6 +148,12 @@ export default class MyProvider extends Component {
 
     }
 
+    closeCart() {
+      let cart = document.querySelector('.Cart');
+      if(cart.classList.contains('open')) {
+        cart.classList.remove('open');
+      }
+    }
 
     findProductInCart(id) {
       return this.state.cartProducts.findIndex(item => item.id === id)
@@ -180,7 +187,6 @@ export default class MyProvider extends Component {
   
   
     render() {
-      console.log('provider rerendered');
       return (
         <ShoppingCartContext.Provider
             value={{ ...this.state }}

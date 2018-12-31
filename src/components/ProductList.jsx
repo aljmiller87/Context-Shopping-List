@@ -7,29 +7,14 @@ import Isotope from '../utils/isotope';
  export default class Products extends Component {
 
     componentDidMount() {
-      let productList = [];
-      this.setState({products: productList})
+        Isotope();
     }
 
 
     render() {
-      console.log('product list rendered');
-      Isotope();
-        // const products = this.props.products.map((product, index) => {
-        //   return (
-            // <Product
-            //   key={index}
-            //   image={product.image}
-            //   name={product.name}
-            //   price={product.price}
-            //   option={product.option}
-            // />
-        //   )
-        // })
-		
+      
 
-
-		    return (
+		return (
 
             <div className="products">
               <div className="container">
@@ -37,24 +22,26 @@ import Isotope from '../utils/isotope';
                   <div className="col">                    
                     <div className="product_grid">
 
-					  					{/* {products} */}
-											<ShoppingCartContext.Consumer>
-												{(context) => {
-													let products = context.products.map((product, index) => {
-														return (
-															<Product
-                                key={index}
-                                id={product.id}
-																image={product.image}
-																name={product.name}
-																price={product.price}
-																option={product.option}
-															/>
-														)
-													})
-													return products
-												}}
-											</ShoppingCartContext.Consumer>
+					  	{/* {products} */}
+                        <ShoppingCartContext.Consumer>
+                            {(context) => {
+                                let products = context.products.map((product, index) => {
+                                    return (
+                                        <Product
+                                            key={index}
+                                            id={product.id}
+                                            image={product.image}
+                                            name={product.name}
+                                            price={product.price}
+                                            option={product.option}
+                                            addToCart={context.addToCart}
+                                            closeCart={context.closeCart}
+                                        />
+                                    )
+                                })
+                                return products
+                            }}
+                        </ShoppingCartContext.Consumer>
 
                     </div>                      
                   </div>

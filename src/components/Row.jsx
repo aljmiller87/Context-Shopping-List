@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 const Row = (props) => {
         
@@ -20,8 +21,8 @@ const Row = (props) => {
                                     </div>
                                 </div>
                                 <div className="cart_item_name_container">
-                                    <div className="cart_item_name">     
-                                        <a href="#"> {props.context.products[index].name} </a>                                   
+                                    <div className="cart_item_name" onClick={props.context.cartTrigger}>     
+                                        <Link to={`/products/${props.context.products[index].id}`}> {props.context.products[index].name} </Link>                                   
                                     </div>
                                 </div>
                             </div>

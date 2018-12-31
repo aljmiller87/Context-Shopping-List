@@ -1,21 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Row from './Row';
 import ShoppingCartContext from '../context/ShoppingCartContext';
 
-export default class Rows extends Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         
-      }
-    }
-    
-    render() {
+const Rows = (props) => {
 
-        console.log('rows rendered');
-        return (
-            <div>
+    return (
+        <div>
             {/* {Cart Products} */}
             <ShoppingCartContext.Consumer>
                 {(context) => {
@@ -32,8 +22,9 @@ export default class Rows extends Component {
                     return products
                 }}
             </ShoppingCartContext.Consumer>
-            </div>
+        </div>
 
-        )
-    }
+    )
 }
+
+export default Rows;
