@@ -15,7 +15,8 @@ ReactDOM.render(
             <Route path="/products/:name" component={ProductDetails} />
             <Route path="/checkout" component={Checkout} />
         </Route>
-       
-    </Router>   
-    , document.getElementById('root'));
+    </Router>
+    ,document.getElementById('root')
+);
+
 registerServiceWorker();

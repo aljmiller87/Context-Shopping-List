@@ -21,20 +21,20 @@ class App extends Component {
         this.initProductAnimation = this.initProductAnimation.bind(this);
     }
 
-  componentDidMount() {
+    componentDidMount() {
         this.initProductAnimation();
-  }
+    }
 
-  initProductAnimation() {
+    initProductAnimation() {
         const tl = new TimelineMax();
         tl
         .to(".LoadingElement", .5, {opacity:0, delay: 1.25})
         .from(".header", .25, {opacity:0, yPercent: -100})
         .staggerFrom('.product', 0.25, {y:100, opacity:0, delay: .2}, .075);
-  }
+    }
 
 
-  render() {  
+    render() {  
         return (      
             <ThemeProvider>
                 <div>
@@ -44,7 +44,7 @@ class App extends Component {
                         <Header />
                         {this.props.children}
                     </ShoppingCartProvider>                     
-                    <Footer img={FooterImg} />            
+                    <Footer img={FooterImg} />
                 </div>        
             </ThemeProvider> 
         );
