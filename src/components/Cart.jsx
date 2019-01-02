@@ -22,6 +22,7 @@ const Cart = (props) => {
                     </div>
                 </div>
 
+                {/* Deliberately nesting data unnecessarily deep to show Context API in action   */}
                 <CartLevel1 />
 
                 <div className="row row_cart_buttons">
