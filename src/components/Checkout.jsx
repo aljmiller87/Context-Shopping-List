@@ -30,12 +30,7 @@ export default class Checkout extends Component {
 
                             {/* <!-- Billing Info --> */}
                             <CheckoutForm />
-                            {/* <ShoppingCartContext.Consumer>
-                                {(context) => (
-                                    <Form cartProducts={context.cartProducts}/>
-                                )}
-                            </ShoppingCartContext.Consumer>
- */}
+              
                             {/* <!-- Order Info --> */}
 
                             <div className="col-lg-6">

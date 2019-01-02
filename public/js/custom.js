@@ -24,46 +24,16 @@ $(document).ready(function()
 
 	*/
 
-	var header = $('.header');
 	var hambActive = false;
 	var menuActive = false;
 
-	setHeader();
-
-	$(window).on('resize', function()
-	{
-		setHeader();
-	});
-
-	$(document).on('scroll', function()
-	{
-		setHeader();
-	});
-
 	initHomeSlider();
-	initSearch();
 	initMenu();
 	// initIsotope();
 
 	/* 
 
-	2. Set Header
-
-	*/
-
-	function setHeader()
-	{
-		if($(window).scrollTop() > 100)
-		{
-			header.addClass('scrolled');
-		}
-		else
-		{
-			header.removeClass('scrolled');
-		}
-	}
-
-	/* 
+	
 
 	3. Init Home Slider
 
@@ -141,25 +111,8 @@ $(document).ready(function()
 		// }
 	}
 
-	/* 
+	
 
-	4. Init Search
-
-	*/
-
-	function initSearch()
-	{
-		if($('.search').length && $('.search_panel').length)
-		{
-			var search = $('.search');
-			var panel = $('.search_panel');
-
-			search.on('click', function()
-			{
-				panel.toggleClass('active');
-			});
-		}
-	}
 
 	/* 
 
@@ -253,49 +206,6 @@ $(document).ready(function()
 		menuActive = false;
 	}
 
-	/* 
-
-	6. Init Isotope
-
-	*/
-
-	// function initIsotope()
-	// {
-	// 	var sortingButtons = $('.product_sorting_btn');
-	// 	var sortNums = $('.num_sorting_btn');
-
-	// 	if($('.product_grid').length)
-	// 	{
-	// 		var grid = $('.product_grid').isotope({
-	// 			itemSelector: '.product',
-	// 			layoutMode: 'fitRows',
-	// 			fitRows:
-	// 			{
-	// 				gutter: 30
-	// 			},
-	//             getSortData:
-	//             {
-	//             	price: function(itemElement)
-	//             	{
-	//             		var priceEle = $(itemElement).find('.product_price').text().replace( '$', '' );
-	//             		return parseFloat(priceEle);
-	//             	},
-	//             	name: '.product_name',
-	//             	stars: function(itemElement)
-	//             	{
-	//             		var starsEle = $(itemElement).find('.rating');
-	//             		var stars = starsEle.attr("data-rating");
-	//             		return stars;
-	//             	}
-	//             },
-	//             animationOptions:
-	//             {
-	//                 duration: 750,
-	//                 easing: 'linear',
-	//                 queue: false
-	//             }
-	//         });
-	// 	}
-	// }
+	
 
 });

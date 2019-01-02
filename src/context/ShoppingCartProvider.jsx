@@ -15,6 +15,7 @@ export default class MyProvider extends Component {
         findProductInProducts: this.findProductInProducts.bind(this),
         findProductInCart: this.findProductInCart.bind(this),
         removeFromCart: this.removeFromCart.bind(this),
+        searchProductByName: this.searchProductByName.bind(this),
         cart: 0,
         cartProducts: [],
         products: [
@@ -183,6 +184,16 @@ export default class MyProvider extends Component {
         cartProducts
       });
 
+    }
+
+    searchProductByName(searchTerm) {
+      searchTerm = searchTerm.toLowerCase();
+      let allProducts = this.state.products;
+      let matchingProducts = allProducts.filter((product) => {
+        let productName = product.name.toLowerCase();
+        return productName.includes(searchTerm);
+      })
+      return matchingProducts;
     }
   
   

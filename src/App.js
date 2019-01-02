@@ -3,11 +3,16 @@ import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
 import {TimelineMax} from 'gsap';
 
+// Components
 import Cart from './components/Cart.jsx';
-
 import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import FooterImg from './images/footer.jpg';
+// End Components
+
+// Utilities
+import Helpers from './utils/helpers';
+// End Utilities
 
 // Providers
 import ShoppingCartProvider from './context/ShoppingCartProvider.jsx';
@@ -18,12 +23,20 @@ import ThemeProvider from './context/ThemeProvider.jsx';
 class App extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            helpersLoaded: false
+        }
+        Helpers();
         this.initProductAnimation = this.initProductAnimation.bind(this);
     }
 
-  componentDidMount() {
+    componentDidMount() {
+        // if (this.state.helpersLoaded === false) {
+        //     this.setState({helpersLoaded: true});
+        //     Helpers();
+        // }
         this.initProductAnimation();
-  }
+    }
 
   initProductAnimation() {
         const tl = new TimelineMax();

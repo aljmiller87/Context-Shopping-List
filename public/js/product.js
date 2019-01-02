@@ -29,64 +29,13 @@ $(document).ready(function()
 	var hambActive = false;
 	var menuActive = false;
 
-	setHeader();
-
-	$(window).on('resize', function()
-	{
-		setHeader();
-	});
-
-	$(document).on('scroll', function()
-	{
-		setHeader();
-	});
-
-	initSearch();
 	initMenu();
 	initImage();
 	initQuantity();
 	// initIsotope();
 
-	/* 
 
-	2. Set Header
-
-	*/
-
-	function setHeader()
-	{
-		if($(window).scrollTop() > 100)
-		{
-			header.addClass('scrolled');
-		}
-		else
-		{
-			header.removeClass('scrolled');
-		}
-	}
-
-	/* 
-
-	3. Init Search
-
-	*/
-
-	function initSearch()
-	{
-		if($('.search').length && $('.search_panel').length)
-		{
-			var search = $('.search');
-			var panel = $('.search_panel');
-
-			search.on('click', function()
-			{
-				panel.toggleClass('active');
-			});
-		}
-	}
-
-	/* 
-
+	/*
 	4. Init Menu
 
 	*/

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Route, HashRouter } from 'react-router-dom';
 
 import App from './App';
 import Checkout from './components/Checkout';
@@ -9,13 +9,12 @@ import ProductDetails from './components/ProductDetails';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-    <Router history={hashHistory}>                                
-        <Route path="/" component={App}>
-            <IndexRoute component={ProductList} />
+    <HashRouter>                                
+        <App>
+            <Route exact path="/" component={ProductList} />
             <Route path="/products/:name" component={ProductDetails} />
             <Route path="/checkout" component={Checkout} />
-        </Route>
-       
-    </Router>   
+        </App>
+    </HashRouter>   
     , document.getElementById('root'));
 registerServiceWorker();
