@@ -1,5 +1,5 @@
 import './scss/styles.scss';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactLoading from 'react-loading';
 import {TimelineMax} from 'gsap';
 
@@ -31,34 +31,30 @@ class App extends Component {
     }
 
     componentDidMount() {
-        // if (this.state.helpersLoaded === false) {
-        //     this.setState({helpersLoaded: true});
-        //     Helpers();
-        // }
         this.initProductAnimation();
     }
 
-  initProductAnimation() {
+    initProductAnimation() {
         const tl = new TimelineMax();
         tl
         .to(".LoadingElement", .5, {opacity:0, delay: 1.25})
         .from(".header", .25, {opacity:0, yPercent: -100})
         .staggerFrom('.product', 0.25, {y:100, opacity:0, delay: .2}, .075);
-  }
+    }
 
 
-  render() {  
+    render() {  
         return (      
             <ThemeProvider>
-                <div>
+                <Fragment>
                     <ReactLoading type="spokes" color="#000000" height={75} width={75} className="LoadingElement"/>
                     <ShoppingCartProvider>
                         <Cart />
                         <Header />
                         {this.props.children}
                     </ShoppingCartProvider>                     
-                    <Footer img={FooterImg} />            
-                </div>        
+                    <Footer img={FooterImg} />
+                </Fragment>        
             </ThemeProvider> 
         );
     }

@@ -10,6 +10,33 @@ export default class Search extends Component {
             redirect: false,
             url: ''
         }
+
+        this.reInitSearch = this.reInitSearch.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (!prevState.redirect && this.state.redirect) {
+            this.setState({
+                redirect: false,
+                url: ''
+            });
+        }
+        
+        if (prevState.redirect && !this.state.redirect) {
+            this.reInitSearch();
+        }
+    }
+
+    reInitSearch() {
+        const search = document.querySelector('.search');
+        const searchPanel = document.querySelector('.search_panel');
+
+        if(search && searchPanel) {
+
+            search.addEventListener('click', () => {
+                searchPanel.classList.toggle('active');
+            });
+        }
     }
   
     render() {

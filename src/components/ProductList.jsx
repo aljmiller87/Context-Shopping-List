@@ -21,7 +21,6 @@ import Isotope from '../utils/isotope';
                 <div className="row">
                   <div className="col">                    
                     <div className="product_grid">
-
 					  	{/* {products} */}
                         <ShoppingCartContext.Consumer>
                             {(context) => {

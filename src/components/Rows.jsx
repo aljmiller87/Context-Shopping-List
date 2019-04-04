@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Row from './Row';
 import ShoppingCartContext from '../context/ShoppingCartContext';
 
 const Rows = (props) => {
 
     return (
-        <div>
+        <Fragment>
             {/* {Cart Products} */}
             <ShoppingCartContext.Consumer>
                 {(context) => {
@@ -22,7 +22,7 @@ const Rows = (props) => {
                     return products
                 }}
             </ShoppingCartContext.Consumer>
-        </div>
+        </Fragment>
 
     )
 }

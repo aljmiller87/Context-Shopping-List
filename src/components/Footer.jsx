@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 export default class Footer extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export default class Footer extends Component {
         }
           
       return (
-        <div>
+        <Fragment>
           	<div className="footer_overlay"></div>
             <footer className="footer">
                 <div className="footer_background" style={FooterStyle}></div>
@@ -39,7 +39,7 @@ export default class Footer extends Component {
                     </div>
                 </div>
             </footer>
-        </div>
+        </Fragment>
       )
     }
 }

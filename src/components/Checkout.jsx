@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 import ShoppingCartContext from '../context/ShoppingCartContext';
 import bannerImage from '../images/cart.jpg';
@@ -22,7 +22,7 @@ export default class Checkout extends Component {
             backgroundImage:`url(${bannerImage})`
         }
         return (
-            <div>
+            <Fragment>
                 <Banner bannerStyle={bannerStyle}/>                
                 <div className="checkout">
                     <div className="container">
@@ -43,7 +43,7 @@ export default class Checkout extends Component {
                         </div>
                     </div>
                 </div>
-            </div>            
+            </Fragment>            
         )
     }
     

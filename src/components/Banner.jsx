@@ -16,19 +16,18 @@ export default class Banner extends Component {
 
 
             <div className="home">
-                    <div className="home_container">
-                        <div className="home_background" style={this.props.bannerStyle}></div>
-                        <div className="home_content_container">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="home_content">
-                                            <div className="breadcrumbs">
-                                                <ul>
-                                                    <li><a href="index.html">Home</a></li>
-                                                    <li>Checkout</li>
-                                                </ul>
-                                            </div>
+                <div className="home_container">
+                    <div className="home_background" style={this.props.bannerStyle}></div>
+                    <div className="home_content_container">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col">
+                                    <div className="home_content">
+                                        <div className="breadcrumbs">
+                                            <ul>
+                                                <li><a href="index.html">Home</a></li>
+                                                <li>Checkout</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -36,6 +35,7 @@ export default class Banner extends Component {
                         </div>
                     </div>
                 </div>
+            </div>
         )
     }
     
