@@ -16,7 +16,8 @@ import Helpers from './utils/helpers';
 
 // Providers
 import ShoppingCartProvider from './context/ShoppingCartProvider.jsx';
-import ThemeProvider from './context/ThemeProvider.jsx';
+// import ThemeProvider from './context/ThemeProvider.jsx';
+import { ThemeContextProvider } from './context/ThemeProvider';
 // End Providers
 
 
@@ -43,19 +44,19 @@ class App extends Component {
     }
 
 
-    render() {  
-        return (      
-            <ThemeProvider>
+    render() {
+        return (
+            <ThemeContextProvider>
                 <Fragment>
                     <ReactLoading type="spokes" color="#000000" height={75} width={75} className="LoadingElement"/>
                     <ShoppingCartProvider>
                         <Cart />
                         <Header />
                         {this.props.children}
-                    </ShoppingCartProvider>                     
+                    </ShoppingCartProvider>
                     <Footer img={FooterImg} />
-                </Fragment>        
-            </ThemeProvider> 
+                </Fragment>
+            </ThemeContextProvider>
         );
     }
 }

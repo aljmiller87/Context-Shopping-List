@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom';
 import SearchIcon from './../images/search.svg'
 import ShoppingIcon from './../images/shopping.svg'
 
 import ShoppingCartContext from '../context/ShoppingCartContext';
-import ThemeContext from '../context/ThemeContext';
+// import ThemeContext from '../context/ThemeContext';
 import Search from '../formik/search';
 import Toggle from './Toggle';
 
@@ -14,7 +14,7 @@ const iconStyle = {
 }
 
 const Header = (props) => {
-    
+
     return (
 
         <header className="header">
@@ -28,29 +28,25 @@ const Header = (props) => {
                                 </div>
                                 <nav className="main_nav">
                                     <ul>
-                                        <li>                                
+                                        <li>
                                             <Link to="/checkout">Checkout</Link>
                                         </li>
-                                        <li>Dark Theme Toggle:</li>
                                         <li>
-                                            <ThemeContext.Consumer>
-                                            {(context) => {
-                                                return (
-                                                
-                                                <Toggle click={context.changeTheme} theme={context.darkTheme}/>
-                                            )}}          
-                                            </ThemeContext.Consumer>
+                                            Dark Theme Toggle:
+                                        </li>
+                                        <li>
+                                            <Toggle />
                                         </li>
                                     </ul>
                                 </nav>
-                                
+
                                     {/* <ShoppingCartIcon /> */}
                                     <ShoppingCartContext.Consumer>
                                     {(context) => (
                                         <div className="header_extra ml-auto">
                                             <div className="shopping_cart">
                                                 <img src={ShoppingIcon} style={iconStyle} alt=""/>
-                                                <button onClick={() => context.cartTrigger()}>                                
+                                                <button onClick={() => context.cartTrigger()}>
                                                     <div className="cartButton">Cart (
                                                     <span>{context.cart}</span>
                                                     )
@@ -66,8 +62,8 @@ const Header = (props) => {
                                         </div>
                                     )}
                                     </ShoppingCartContext.Consumer>
-                                    
-                                    
+
+
                             </div>
                         </div>
                     </div>
@@ -79,7 +75,7 @@ const Header = (props) => {
                 )}
             </ShoppingCartContext.Consumer>
         </header>
-    )   
+    )
 }
 
 export default Header;
