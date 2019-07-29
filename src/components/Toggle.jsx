@@ -6,9 +6,22 @@ const Toggle = (props) => {
 
     const toggleTheme = () => {
         console.log('toggleTheme');
-        dispatch({type: 'SWITCH_THEME'})
+
+        dispatch({type: 'SWITCH_THEME'});
+        window.localStorage.setItem("saved_theme", JSON.stringify(state.darkTheme));
     }
+
     let checked = state.darkTheme === true ? 'checked' : '';
+
+    useEffect(() => {
+        window.localStorage.setItem("saved_theme", JSON.stringify({darkTheme: state.darkTheme}));
+        // let savedTheme = JSON.parse(window.localStorage.getItem("saved_theme"));
+
+        // if (savedTheme) {
+        //     dispatch({type: 'SWITCH_THEME'})
+        // }
+
+    }, [state.darkTheme])
 
     return (
         <label className="switch">

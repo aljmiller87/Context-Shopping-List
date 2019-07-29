@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import SearchIcon from './../images/search.svg'
 import ShoppingIcon from './../images/shopping.svg'
@@ -14,6 +14,7 @@ const iconStyle = {
 }
 
 const Header = (props) => {
+    const myShoppingCartContext = useContext(ShoppingCartContext);
 
     return (
 
@@ -41,29 +42,23 @@ const Header = (props) => {
                                 </nav>
 
                                     {/* <ShoppingCartIcon /> */}
-                                    <ShoppingCartContext.Consumer>
-                                    {(context) => (
-                                        <div className="header_extra ml-auto">
-                                            <div className="shopping_cart">
-                                                <img src={ShoppingIcon} style={iconStyle} alt=""/>
-                                                <button onClick={() => context.cartTrigger()}>
-                                                    <div className="cartButton">Cart (
-                                                    <span>{context.cart}</span>
-                                                    )
-                                                    </div>
-                                                </button>
-                                            </div>
-                                            <div className="search">
-                                                <div className="search_icon">
-                                                    <img src={SearchIcon} style={iconStyle} alt=""/>
+                                    <div className="header_extra ml-auto">
+                                        <div className="shopping_cart">
+                                            <img src={ShoppingIcon} style={iconStyle} alt=""/>
+                                            <button onClick={() => myShoppingCartContext.cartTrigger()}>
+                                                <div className="cartButton">Cart (
+                                                    <span>{myShoppingCartContext.cart}</span>
+                                                )
                                                 </div>
-                                            </div>
-                                            {/* <div className="hamburger"><i className="fa fa-bars" aria-hidden="true"></i></div> */}
+                                            </button>
                                         </div>
-                                    )}
-                                    </ShoppingCartContext.Consumer>
-
-
+                                        <div className="search">
+                                            <div className="search_icon">
+                                                <img src={SearchIcon} style={iconStyle} alt=""/>
+                                            </div>
+                                        </div>
+                                        {/* <div className="hamburger"><i className="fa fa-bars" aria-hidden="true"></i></div> */}
+                                    </div>
                             </div>
                         </div>
                     </div>

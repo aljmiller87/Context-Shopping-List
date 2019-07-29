@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { useContext, Fragment } from 'react'
 
 import ShoppingCartContext from '../context/ShoppingCartContext';
 import bannerImage from '../images/cart.jpg';
@@ -8,43 +8,34 @@ import Banner from './Banner';
 import CheckoutForm from '../formik/CheckoutForm';
 import OrderReview from './OrderReview';
 
-export default class Checkout extends Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         
-      }
+const Checkout = props => {
+    const bannerStyle = {
+        backgroundImage:`url(${bannerImage})`
     }
 
-    render() {
-        const bannerStyle = {
-            backgroundImage:`url(${bannerImage})`
-        }
-        return (
-            <Fragment>
-                <Banner bannerStyle={bannerStyle}/>                
-                <div className="checkout">
-                    <div className="container">
-                        <div className="row">
+    const myShoppingCartContext = useContext(ShoppingCartContext);
 
-                            {/* <!-- Billing Info --> */}
-                            <CheckoutForm />
-              
-                            {/* <!-- Order Info --> */}
+    return (
+        <Fragment>
+            <Banner bannerStyle={bannerStyle}/>
+            <div className="checkout">
+                <div className="container">
+                    <div className="row">
 
-                            <div className="col-lg-6">
-                                <ShoppingCartContext.Consumer>
-                                    {(context) => (
-                                        <OrderReview cartProducts={context.cartProducts}/>
-                                    )}
-                                </ShoppingCartContext.Consumer>                                
-                            </div>
+                        {/* <!-- Billing Info --> */}
+                        <CheckoutForm />
+
+                        {/* <!-- Order Info --> */}
+
+                        <div className="col-lg-6">
+                            <OrderReview cartProducts={myShoppingCartContext.cartProducts}/>
                         </div>
                     </div>
                 </div>
-            </Fragment>            
-        )
-    }
-    
+            </div>
+        </Fragment>
+    )
+
 }
+
+export default Checkout;

@@ -1,8 +1,10 @@
 import React, { createContext, useReducer } from 'react';
 
 let ThemeContext = createContext();
+const savedTheme = (window.localStorage.getItem("saved_theme"));
 const initialState = {
-    darkTheme: false
+    // darkTheme: JSON.parse(window.localStorage.getItem("saved_theme")).darkTheme || false
+    darkTheme: savedTheme ? JSON.parse(savedTheme).darkTheme : false
 }
 
 let reducer = (state, action) => {
@@ -50,13 +52,13 @@ let reducer = (state, action) => {
 
 //     // Checks if state exists in local storage
 //     componentDidMount() {
-        let state = JSON.parse(window.localStorage.getItem("saved_theme"));
+        // let state = JSON.parse(window.localStorage.getItem("saved_theme"));
 
-        if (state) {
-          this.setState({
-            darkTheme: state.darkTheme
-          });
-        }
+        // if (state) {
+        //   this.setState({
+        //     darkTheme: state.darkTheme
+        //   });
+        // }
 //     }
 
 //     // Sets state in local storage

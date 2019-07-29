@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CartLevel1 from './CartLevel1';
 import { Link } from 'react-router-dom';
-
-
 import ShoppingCartContext from '../context/ShoppingCartContext';
 
 const Cart = (props) => {
+
+    const myShoppingCartContext = useContext(ShoppingCartContext);
+    let subtotal = 0;
+    myShoppingCartContext.cartProducts.forEach((product) => {
+        subtotal = subtotal + (product.price * product.quantity)
+    });
 
     return (
         <div className="Cart cart_info">
@@ -26,26 +30,20 @@ const Cart = (props) => {
                 <CartLevel1 />
 
                 <div className="row row_cart_buttons">
-                    <div className="col">                                                            
-                        <ShoppingCartContext.Consumer>
-                            {(context) => {
-                                return (
-                                    <div className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                                        <div className="button continue_shopping_button" onClick={() => context.cartTrigger()}><Link to="/">Continue shopping</Link></div>
-                                        <div className="cart_buttons_right ml-lg-auto">
-                                            <div className="button clear_cart_button">
-                                                <a onClick={() => context.clearCart()}  href="#">Clear cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            }
-                        </ShoppingCartContext.Consumer>                                
+                    <div className="col">
+                        <div className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                            <div className="button continue_shopping_button" onClick={() => myShoppingCartContext.cartTrigger()}><Link to="/">Continue shopping</Link></div>
+                            <div className="cart_buttons_right ml-lg-auto">
+                                <div className="button clear_cart_button">
+                                    <button onClick={() => myShoppingCartContext.clearCart()}>Clear cart</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="row row_extra">
                     <div className="col-lg-4">
-                        
+
                         {/* <!-- Delivery --> */}
                         <div className="delivery">
                             <div className="section_title">Shipping method</div>
@@ -90,22 +88,11 @@ const Cart = (props) => {
                                 <ul>
                                     <li className="d-flex flex-row align-items-center justify-content-start">
                                         <div className="cart_total_title">Subtotal</div>
-                                        <ShoppingCartContext.Consumer>
-                                            {(context) => {
-                                                let subtotal = 0;
-                                                context.cartProducts.forEach((product) => {
-                                                    subtotal = subtotal + (product.price * product.quantity)
-                                                })
-                                                return (
-                                                    
-                                                    <div className="cart_total_value ml-auto">${subtotal}</div>
-                                                )}
-                                            }
-                                        </ShoppingCartContext.Consumer>
+                                        <div className="cart_total_value ml-auto">${subtotal}</div>
 
 
 
-                                        
+
                                     </li>
                                     <li className="d-flex flex-row align-items-center justify-content-start">
                                         <div className="cart_total_title">Tax</div>
@@ -118,34 +105,15 @@ const Cart = (props) => {
                                     </li>
                                     <li className="d-flex flex-row align-items-center justify-content-start">
                                         <div className="cart_total_title">Total</div>
-                                        <ShoppingCartContext.Consumer>
-                                            {(context) => {
-                                                let subtotal = 0;
-                                                context.cartProducts.forEach((product) => {
-                                                    subtotal = subtotal + (product.price * product.quantity)
-                                                })
-                                                return (
-                                                    
-                                                    <div className="cart_total_value ml-auto">${subtotal}</div>
-                                                )}
-                                            }
-                                        </ShoppingCartContext.Consumer>
-
+                                        <div className="cart_total_value ml-auto">${subtotal}</div>
                                     </li>
                                 </ul>
                             </div>
-                            <ShoppingCartContext.Consumer>
-                                {(context) => {
-                                    return (
-                                        <div className="button checkout_button" onClick={context.cartTrigger}><Link to="/checkout">Proceed to checkout</Link></div>
-                                    )
-                                }}
-                            </ShoppingCartContext.Consumer>
-                            
+                            <div className="button checkout_button" onClick={myShoppingCartContext.cartTrigger}><Link to="/checkout">Proceed to checkout</Link></div>
                         </div>
                     </div>
                 </div>
-            </div>		
+            </div>
         </div>
     )
 }
