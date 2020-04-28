@@ -66,7 +66,7 @@ export default class Search extends Component {
                       let name = filteredProductResults[0].name;
                       this.setState({
                         redirect: true,
-                        url: `/products/${filteredProductResults[0].name}`,
+                        url: `/products/${name}`,
                       });
                     }
                   }}

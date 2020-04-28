@@ -6,6 +6,7 @@ import ShoppingIcon from "./../images/shopping.svg";
 import { ShoppingCartContext } from "../context/ShoppingCartProvider";
 import Search from "../formik/search";
 import Toggle from "./Toggle";
+import { cartTrigger } from "../utilities";
 
 const iconStyle = {
   height: "20px",
@@ -14,8 +15,7 @@ const iconStyle = {
 
 const Header = (props) => {
   const myShoppingCartContext = useContext(ShoppingCartContext);
-  const { state, dispatch } = myShoppingCartContext;
-  console.log("myShoppingCartContext state", state);
+  const { state } = myShoppingCartContext;
 
   return (
     <header className="header">
@@ -43,7 +43,7 @@ const Header = (props) => {
                 <div className="header_extra ml-auto">
                   <div className="shopping_cart">
                     <img src={ShoppingIcon} style={iconStyle} alt="" />
-                    <button onClick={() => myShoppingCartContext.cartTrigger()}>
+                    <button onClick={() => cartTrigger()}>
                       <div className="cartButton">
                         Cart (<span>{state.cart}</span>)
                       </div>

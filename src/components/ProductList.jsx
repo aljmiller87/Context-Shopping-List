@@ -1,6 +1,5 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import Product from "./Product";
-import { ShoppingCartContext } from "../context/ShoppingCartProvider";
 import Isotope from "../utils/isotope";
 import { products } from "../data/products";
 
@@ -9,7 +8,6 @@ const Products = (props) => {
     Isotope();
   }, []);
 
-  const myShoppingCartContext = useContext(ShoppingCartContext);
   const renderProducts = products.map((item, index) => {
     return (
       <Product
@@ -19,8 +17,6 @@ const Products = (props) => {
         name={item.name}
         price={item.price}
         option={item.option}
-        addToCart={myShoppingCartContext.addToCart}
-        closeCart={myShoppingCartContext.closeCart}
       />
     );
   });

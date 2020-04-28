@@ -53,7 +53,7 @@ class App extends Component {
             className="LoadingElement"
           />
           <ShoppingCartProvider>
-            {/* <Cart /> */}
+            <Cart />
             <Header />
             {this.props.children}
           </ShoppingCartProvider>

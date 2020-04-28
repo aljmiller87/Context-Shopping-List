@@ -4,25 +4,13 @@ import { ShoppingCartContext } from "../context/ShoppingCartProvider";
 
 const Rows = (props) => {
   const myShoppingCartContext = useContext(ShoppingCartContext);
-  const cartProducts = myShoppingCartContext.cartProducts.map(
-    (product, index) => {
-      return (
-        <Row
-          key={index}
-          id={product.id}
-          quantity={product.quantity}
-          context={myShoppingCartContext}
-        />
-      );
-    }
-  );
+  const { state } = myShoppingCartContext;
 
-  return (
-    <Fragment>
-      {/* {Cart Products} */}
-      {cartProducts}
-    </Fragment>
-  );
+  const cartProducts = state.cartProducts.map((product, index) => {
+    return <Row key={index} id={product.id} quantity={product.quantity} />;
+  });
+
+  return <Fragment>{cartProducts}</Fragment>;
 };
 
 export default Rows;

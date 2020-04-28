@@ -49,7 +49,7 @@ export const cartTrigger = () => {
 
 export const closeCart = () => {
   let cart = document.querySelector(".Cart");
-  if (cart.classList.contains("open")) {
+  if (cart) {
     cart.classList.remove("open");
   }
 };

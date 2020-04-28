@@ -2,13 +2,22 @@ import React, { useContext } from "react";
 import CartLevel1 from "./CartLevel1";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../context/ShoppingCartProvider";
+import { cartTrigger } from "../utilities";
 
 const Cart = (props) => {
   const myShoppingCartContext = useContext(ShoppingCartContext);
+  const { state, dispatch } = myShoppingCartContext;
+
   let subtotal = 0;
-  myShoppingCartContext.cartProducts.forEach((product) => {
+  state.cartProducts.forEach((product) => {
     subtotal = subtotal + product.price * product.quantity;
   });
+
+  const clearCart = () => {
+    dispatch({
+      type: "CLEAR_CART",
+    });
+  };
 
   return (
     <div className="Cart cart_info">
@@ -35,15 +44,13 @@ const Cart = (props) => {
             <div className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
               <div
                 className="button continue_shopping_button"
-                onClick={() => myShoppingCartContext.cartTrigger()}
+                onClick={() => cartTrigger()}
               >
                 <Link to="/">Continue shopping</Link>
               </div>
               <div className="cart_buttons_right ml-lg-auto">
                 <div className="button clear_cart_button">
-                  <button onClick={() => myShoppingCartContext.clearCart()}>
-                    Clear cart
-                  </button>
+                  <a onClick={clearCart}>Clear cart</a>
                 </div>
               </div>
             </div>
@@ -125,7 +132,7 @@ const Cart = (props) => {
               </div>
               <div
                 className="button checkout_button"
-                onClick={myShoppingCartContext.cartTrigger}
+                onClick={() => cartTrigger()}
               >
                 <Link to="/checkout">Proceed to checkout</Link>
               </div>
