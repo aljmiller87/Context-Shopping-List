@@ -1,44 +1,43 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer } from "react";
 
 let ThemeContext = createContext();
-const savedTheme = (window.localStorage.getItem("saved_theme"));
+const savedTheme = window.localStorage.getItem("saved_theme");
 const initialState = {
-    // darkTheme: JSON.parse(window.localStorage.getItem("saved_theme")).darkTheme || false
-    darkTheme: savedTheme ? JSON.parse(savedTheme).darkTheme : false
-}
+  darkTheme: savedTheme ? JSON.parse(savedTheme).darkTheme : false,
+};
 
 let reducer = (state, action) => {
-     // eslint-disable-next-line default-case
-     switch(action.type) {
-         case 'SWITCH_THEME': {
-             console.log('accessing case SWITCH_THEME');
-             return { ...state, darkTheme: !state.darkTheme }
-         }
-     }
-
-     return state;
- }
-
- function ThemeContextProvider(props) {
-    const fullInitialState = {
-        ...initialState
+  // eslint-disable-next-line default-case
+  switch (action.type) {
+    case "SWITCH_THEME": {
+      console.log("accessing case SWITCH_THEME");
+      return { ...state, darkTheme: !state.darkTheme };
     }
+  }
 
-    let [state, dispatch] = useReducer(reducer, fullInitialState);
-    let value = { state, dispatch };
+  return state;
+};
 
-    return (
-        <ThemeContext.Provider value={value}>
-            <div className={ state.darkTheme === true ? 'ThemeDark' : ''}>
-                {props.children}
-            </div>
-        </ThemeContext.Provider>
-    );
- }
+function ThemeContextProvider(props) {
+  const fullInitialState = {
+    ...initialState,
+  };
 
- let ThemeContextConsumer = ThemeContext.Consumer;
+  let [state, dispatch] = useReducer(reducer, fullInitialState);
+  let value = { state, dispatch };
 
- export { ThemeContext, ThemeContextProvider, ThemeContextConsumer}
+  return (
+    <ThemeContext.Provider value={value}>
+      <div className={state.darkTheme === true ? "ThemeDark" : ""}>
+        {props.children}
+      </div>
+    </ThemeContext.Provider>
+  );
+}
+
+let ThemeContextConsumer = ThemeContext.Consumer;
+
+export { ThemeContext, ThemeContextProvider, ThemeContextConsumer };
 
 // export default class ThemeProvider extends Component {
 //     constructor(props) {
@@ -52,13 +51,13 @@ let reducer = (state, action) => {
 
 //     // Checks if state exists in local storage
 //     componentDidMount() {
-        // let state = JSON.parse(window.localStorage.getItem("saved_theme"));
+// let state = JSON.parse(window.localStorage.getItem("saved_theme"));
 
-        // if (state) {
-        //   this.setState({
-        //     darkTheme: state.darkTheme
-        //   });
-        // }
+// if (state) {
+//   this.setState({
+//     darkTheme: state.darkTheme
+//   });
+// }
 //     }
 
 //     // Sets state in local storage
@@ -68,7 +67,6 @@ let reducer = (state, action) => {
 //         };
 //         window.localStorage.setItem("saved_theme", JSON.stringify(state))
 //     }
-
 
 //     changeTheme() {
 //         this.setState({
@@ -89,4 +87,3 @@ let reducer = (state, action) => {
 //       )
 //     }
 //   }
-

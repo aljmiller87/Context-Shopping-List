@@ -1,0 +1,58 @@
+export const products = [
+  {
+    id: 1,
+    image: "product_1.jpg",
+    name: "Smart Phone",
+    price: 670,
+    option: "New",
+  },
+  {
+    id: 2,
+    image: "product_2.jpg",
+    name: "Speaker",
+    price: 90,
+    option: "Sale",
+  },
+  {
+    id: 3,
+    image: "product_3.jpg",
+    name: "Cable",
+    price: 15,
+    option: "Default",
+  },
+  {
+    id: 4,
+    image: "product_4.jpg",
+    name: "Computer",
+    price: 1250,
+    option: "Default",
+  },
+  {
+    id: 5,
+    image: "product_5.jpg",
+    name: "Headphones",
+    price: 65,
+    option: "Default",
+  },
+  {
+    id: 6,
+    image: "product_6.jpg",
+    name: "Tablet",
+    price: 590,
+    option: "Popular",
+  },
+  {
+    id: 7,
+    image: "product_7.jpg",
+    name: "Budget Smart Phone",
+    price: 190,
+    option: "Hot",
+  },
+  {
+    id: 8,
+    image: "product_8.jpg",
+    name: "Keyboard",
+    price: 45,
+    option: "Default",
+  },
+];
