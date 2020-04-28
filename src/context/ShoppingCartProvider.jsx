@@ -20,7 +20,6 @@ const initialState = savedCart ? savedCart : emptyCart;
 */
 
 let reducer = (state, action) => {
-  // eslint-disable-next-line default-case
   switch (action.type) {
     case "ADD_TO_CART": {
       console.log("ADD_TO_CART action");
@@ -36,17 +35,17 @@ let reducer = (state, action) => {
       console.log("CLEAR_CART action");
       return { ...state, cart: 0, cartProducts: [] };
     }
+    default:
+      return state;
   }
-
-  return state;
 };
 
 /* ******
-  #4 Create Provider
+  #4 Create Context Provider
 */
 export const ShoppingCartProvider = (props) => {
   /* ******
-    #4.a Assign useReducer
+    #4.a Create useReducer
   */
   const [state, dispatch] = useReducer(reducer, initialState);
 

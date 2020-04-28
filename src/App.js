@@ -16,7 +16,6 @@ import Helpers from "./utils/helpers";
 
 // Providers
 import { ShoppingCartProvider } from "./context/ShoppingCartProvider.jsx";
-// import ThemeProvider from './context/ThemeProvider.jsx';
 import { ThemeContextProvider } from "./context/ThemeProvider";
 // End Providers
 
